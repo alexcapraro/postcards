@@ -1,7 +1,8 @@
 // Bump VERSION on every upload so phones pick up the new files.
-const VERSION = "postcards-v1";
+const VERSION = "postcards-v2";
 const FILES = ["./", "index.html", "manifest.webmanifest", "icon-192.png", "icon-512.png",
-  "fonts/overpass-latin-400-normal.woff2", "fonts/overpass-latin-600-normal.woff2", "fonts/overpass-latin-700-normal.woff2", "fonts/overpass-latin-800-normal.woff2",
+  "fonts/young-serif-latin-400-normal.woff2", "fonts/alfa-slab-one-latin-400-normal.woff2",
+  "fonts/hanken-grotesk-latin-400-normal.woff2", "fonts/hanken-grotesk-latin-500-normal.woff2", "fonts/hanken-grotesk-latin-600-normal.woff2", "fonts/hanken-grotesk-latin-700-normal.woff2",
   "fonts/overpass-mono-latin-400-normal.woff2", "fonts/overpass-mono-latin-600-normal.woff2", "fonts/caveat-latin-500-normal.woff2", "fonts/caveat-latin-700-normal.woff2"];
 self.addEventListener("install", (e) => { e.waitUntil(caches.open(VERSION).then((c) => c.addAll(FILES)).then(() => self.skipWaiting())); });
 self.addEventListener("activate", (e) => { e.waitUntil(caches.keys().then((ks) => Promise.all(ks.filter((k) => k !== VERSION).map((k) => caches.delete(k)))).then(() => self.clients.claim())); });

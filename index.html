@@ -4,7 +4,7 @@
 <title>Postcards</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
-<meta name="theme-color" content="#F6F1E7">
+<meta name="theme-color" content="#F1E6D3">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Postcards">
@@ -14,30 +14,35 @@
 <link rel="icon" href="icon-192.png">
 <link rel="apple-touch-icon" href="icon-192.png">
 <style>
-/* Postcards. Pilot build: Check Please's visual language (interstate green, beige paper, Overpass,
-   mono for dates) plus Caveat for handwriting on the postcards. Fonts are bundled so it works offline. */
-@font-face { font-family: "Overpass"; font-weight: 400; font-display: swap; src: url("fonts/overpass-latin-400-normal.woff2") format("woff2"); }
-@font-face { font-family: "Overpass"; font-weight: 600; font-display: swap; src: url("fonts/overpass-latin-600-normal.woff2") format("woff2"); }
-@font-face { font-family: "Overpass"; font-weight: 700; font-display: swap; src: url("fonts/overpass-latin-700-normal.woff2") format("woff2"); }
-@font-face { font-family: "Overpass"; font-weight: 800; font-display: swap; src: url("fonts/overpass-latin-800-normal.woff2") format("woff2"); }
+/* Postcards v2. Desert road palette: sand ground, espresso ink, burnt orange actions, ochre highlights.
+   Young Serif headings, Hanken Grotesk UI, Overpass Mono dates, Caveat handwriting, Alfa Slab One postcard lettering.
+   All fonts are bundled so the app and the postcards work offline. */
+@font-face { font-family: "Young Serif"; font-weight: 400; font-display: swap; src: url("fonts/young-serif-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "Hanken Grotesk"; font-weight: 400; font-display: swap; src: url("fonts/hanken-grotesk-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "Hanken Grotesk"; font-weight: 500; font-display: swap; src: url("fonts/hanken-grotesk-latin-500-normal.woff2") format("woff2"); }
+@font-face { font-family: "Hanken Grotesk"; font-weight: 600; font-display: swap; src: url("fonts/hanken-grotesk-latin-600-normal.woff2") format("woff2"); }
+@font-face { font-family: "Hanken Grotesk"; font-weight: 700; font-display: swap; src: url("fonts/hanken-grotesk-latin-700-normal.woff2") format("woff2"); }
+@font-face { font-family: "Alfa Slab One"; font-weight: 400; font-display: swap; src: url("fonts/alfa-slab-one-latin-400-normal.woff2") format("woff2"); }
 @font-face { font-family: "Overpass Mono"; font-weight: 400; font-display: swap; src: url("fonts/overpass-mono-latin-400-normal.woff2") format("woff2"); }
 @font-face { font-family: "Overpass Mono"; font-weight: 600; font-display: swap; src: url("fonts/overpass-mono-latin-600-normal.woff2") format("woff2"); }
 @font-face { font-family: "Caveat"; font-weight: 500; font-display: swap; src: url("fonts/caveat-latin-500-normal.woff2") format("woff2"); }
 @font-face { font-family: "Caveat"; font-weight: 700; font-display: swap; src: url("fonts/caveat-latin-700-normal.woff2") format("woff2"); }
 :root {
-  --ground: #F6F1E7; --card: #FFFDF8; --line: #E4DBCB; --line2: #CFC6B5; --seg: #EDE6D8;
-  --green: #1D6B48; --deep: #134A32; --soft: #DCEBE2; --ink: #17221D; --muted: #5B6862;
-  --amber-bg: #FBEDD5; --amber: #8A5200; --danger: #A3302A;
-  --sans: "Overpass", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --ground: #F1E6D3; --card: #FAF4E8; --line: #DCCBB2; --line2: #C9B293; --seg: #E6D6BE;
+  --accent: #B0502A; --accent-d: #8C3B1C; --ochre: #D99A3E; --ink: #2A1C13; --ink2: #3A281C; --muted: #6A5242; --muted2: #5A4334;
+  --soft: #F0DDBF; --soft-ink: #5A2E16; --warn-bg: #E9CFA8; --danger: #9B2C24;
+  --serif: "Young Serif", Georgia, serif;
+  --sans: "Hanken Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
   --mono: "Overpass Mono", ui-monospace, Menlo, monospace;
   --hand: "Caveat", "Bradley Hand", cursive;
-  --nav-h: 64px; --safe-b: env(safe-area-inset-bottom, 0px); --safe-t: env(safe-area-inset-top, 0px);
+  --slab: "Alfa Slab One", Rockwell, serif;
+  --nav-h: 72px; --safe-b: env(safe-area-inset-bottom, 0px); --safe-t: env(safe-area-inset-top, 0px);
   color-scheme: light;
 }
 * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 [hidden] { display: none !important; }
 html, body { height: 100%; overscroll-behavior: none; }
-body { margin: 0; background: var(--ground); color: var(--ink); font-family: var(--sans); font-size: 16px; line-height: 1.4; }
+body { margin: 0; background: var(--ground); color: var(--ink); font-family: var(--sans); font-size: 16px; line-height: 1.45; }
 button, input, select, textarea { font: inherit; color: inherit; }
 html { touch-action: manipulation; -webkit-text-size-adjust: 100%; }
 body { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
@@ -45,186 +50,255 @@ input, textarea, select { -webkit-user-select: text; user-select: text; font-siz
 svg, button img { pointer-events: none; }
 img { -webkit-user-drag: none; }
 button { cursor: pointer; }
-:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .mono { font-family: var(--mono); font-variant-numeric: tabular-nums; }
-.eyebrow { font-size: 11.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.eyebrow { font-family: var(--mono); font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
 .muted { color: var(--muted); }
 .hint { margin: 0; font-size: 13px; color: var(--muted); text-align: center; }
 svg.i { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+.h2 { margin: 0; font-family: var(--serif); font-weight: 400; font-size: 24px; line-height: 1.15; }
 
 #app { position: fixed; inset: 0; max-width: 480px; margin: 0 auto; overflow: hidden; background: var(--ground); }
 @media (min-width: 520px) { #app { border-left: 1px solid var(--line); border-right: 1px solid var(--line); } }
 .screen { position: absolute; inset: 0; overflow-y: auto; overflow-x: hidden; overscroll-behavior: contain; padding-top: var(--safe-t); }
-.screen.tabbed { padding-bottom: calc(var(--nav-h) + var(--safe-b) + 90px); }
-.pad { padding-inline: 16px; display: flex; flex-direction: column; gap: 12px; }
-.card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 14px 16px; }
-.page-head { padding: 22px 20px 12px; display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; }
-.big-title { margin: 0; font-size: 30px; font-weight: 800; line-height: 1; }
+.screen.tabbed { padding-bottom: calc(var(--nav-h) + var(--safe-b) + 40px); }
+.pad { padding-inline: 20px; display: flex; flex-direction: column; gap: 14px; }
+.card { background: var(--card); border-radius: 16px; padding: 14px 16px; }
+.page-head { padding: 28px 20px 16px; display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; }
+.page-head > div { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.big-title { margin: 0; font-family: var(--serif); font-weight: 400; font-size: 40px; line-height: 1.05; overflow-wrap: anywhere; }
 .bar-head { height: 60px; padding: 8px 12px 0 4px; display: flex; align-items: center; gap: 4px; }
-.bar-head h1 { margin: 0; flex-grow: 1; font-size: 19px; font-weight: 800; }
-.icon-btn { width: 44px; height: 44px; border: 0; border-radius: 12px; background: transparent; color: var(--ink); display: flex; align-items: center; justify-content: center; }
-.btn-primary { min-height: 56px; border: 0; border-radius: 16px; background: var(--green); color: #fff; display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 17px; font-weight: 800; width: 100%; text-decoration: none; }
-.btn-primary:active { background: var(--deep); }
+.bar-head h1 { margin: 0; flex-grow: 1; font-size: 18px; font-weight: 700; }
+.icon-btn { width: 44px; height: 44px; border: 0; border-radius: 22px; background: transparent; color: var(--ink); display: flex; align-items: center; justify-content: center; }
+.icon-btn.ring { border: 1px solid var(--line); background: var(--card); }
+.btn-primary { min-height: 54px; border: 0; border-radius: 14px; background: var(--accent); color: #FFF8EE; display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 16px; font-weight: 700; width: 100%; text-decoration: none; }
+.btn-primary:active { background: var(--accent-d); }
 .btn-primary:disabled { opacity: .5; }
-.btn-outline { min-height: 44px; padding: 0 14px; border: 1px solid var(--green); border-radius: 12px; background: transparent; color: var(--green); display: inline-flex; align-items: center; justify-content: center; gap: 6px; font-size: 14px; font-weight: 800; white-space: nowrap; }
-.btn-outline.wide { width: 100%; min-height: 52px; font-size: 15px; border-radius: 14px; background: var(--card); }
+.btn-outline { min-height: 44px; padding: 0 14px; border: 1.5px solid var(--ink); border-radius: 12px; background: transparent; color: var(--ink); display: inline-flex; align-items: center; justify-content: center; gap: 6px; font-size: 14px; font-weight: 700; white-space: nowrap; }
+.btn-outline.wide { width: 100%; min-height: 52px; font-size: 15px; border-radius: 14px; }
 .btn-outline.danger { border-color: var(--danger); color: var(--danger); }
+.btn-outline.dark { background: var(--ink); color: var(--ground); }
 .btn-outline svg.i { width: 18px; height: 18px; stroke-width: 2; }
-.link-btn { min-height: 36px; padding: 0 4px; border: 0; background: transparent; color: var(--green); font-size: 14px; font-weight: 800; display: inline-flex; align-items: center; gap: 4px; }
+.link-btn { min-height: 44px; padding: 0 4px; border: 0; background: transparent; color: var(--accent-d); font-size: 14px; font-weight: 700; display: inline-flex; align-items: center; gap: 4px; }
 .link-btn svg.i { width: 16px; height: 16px; stroke-width: 2.4; }
-.chip { flex: none; min-height: 40px; padding: 0 15px; border-radius: 999px; border: 1px solid var(--line); background: var(--card); font-size: 14px; font-weight: 600; white-space: nowrap; }
-.chip[aria-pressed="true"] { border-color: var(--green); background: var(--green); color: #fff; font-weight: 700; }
-.chip.add { border-style: dashed; color: var(--green); font-weight: 700; }
-.chips { display: flex; gap: 6px; flex-wrap: wrap; }
-.chips.scroll { flex-wrap: nowrap; overflow-x: auto; margin-right: -16px; padding-right: 16px; scrollbar-width: none; }
+.chip { flex: none; min-height: 38px; padding: 0 15px; border-radius: 999px; border: 1px solid var(--line); background: transparent; font-size: 14px; font-weight: 500; white-space: nowrap; }
+.sheet .chip { background: var(--card); }
+.chip[aria-pressed="true"] { border-color: var(--ink); background: var(--ink); color: var(--ground); font-weight: 600; }
+.chip.add { border-style: dashed; border-color: var(--line2); color: var(--muted); font-weight: 600; }
+.chips { display: flex; gap: 8px; flex-wrap: wrap; }
+.chips.scroll { flex-wrap: nowrap; overflow-x: auto; margin-right: -20px; padding-right: 20px; scrollbar-width: none; }
 .chips.scroll::-webkit-scrollbar, .thumbs::-webkit-scrollbar { display: none; }
-.tag { display: inline-flex; align-items: center; gap: 4px; min-height: 24px; padding: 0 9px; border-radius: 999px; background: var(--soft); color: var(--deep); font-size: 12.5px; font-weight: 700; border: 0; }
+.tag { display: inline-flex; align-items: center; gap: 4px; min-height: 24px; padding: 0 9px; border-radius: 999px; background: var(--soft); color: var(--soft-ink); font-size: 12.5px; font-weight: 600; border: 0; }
 .tag svg.i { width: 14px; height: 14px; stroke-width: 2.2; }
-.field { width: 100%; min-height: 48px; padding: 0 14px; border: 1px solid var(--line); border-radius: 14px; background: var(--card); }
+.field { width: 100%; min-height: 48px; padding: 0 14px; border: 1px solid var(--line); border-radius: 12px; background: var(--card); }
 textarea.field { padding: 12px 14px; min-height: 96px; resize: vertical; line-height: 1.4; }
-.lbl { display: block; margin: 0 0 6px; font-size: 13px; font-weight: 700; color: var(--muted); }
+.lbl { display: block; margin: 0 0 6px; font-family: var(--mono); font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
 .sec-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 6px; }
-.note { display: flex; gap: 10px; align-items: flex-start; padding: 11px 14px; border-radius: 12px; font-size: 13px; line-height: 1.4; }
-.note.green { background: var(--soft); color: var(--deep); }
+.note { display: flex; gap: 10px; align-items: flex-start; padding: 12px 14px; border-radius: 12px; font-size: 13.5px; line-height: 1.4; background: var(--card); color: var(--muted2); }
 .note svg.i { width: 18px; height: 18px; stroke-width: 2; margin-top: 1px; }
-.seg { display: flex; padding: 3px; gap: 2px; border-radius: 11px; background: var(--seg); }
-.seg button { flex: 1 1 0; min-height: 36px; padding: 0 14px; border: 0; border-radius: 8px; font-size: 13.5px; background: transparent; color: var(--muted); font-weight: 600; }
-.seg button[aria-pressed="true"] { background: var(--card); color: var(--ink); font-weight: 700; box-shadow: 0 1px 2px rgba(23,34,29,.12); }
+.seg { display: flex; padding: 4px; gap: 4px; border-radius: 12px; background: var(--seg); }
+.seg button { flex: 1 1 0; min-height: 40px; padding: 0 14px; border: 0; border-radius: 9px; font-size: 14px; background: transparent; color: var(--muted2); font-weight: 600; }
+.seg button[aria-pressed="true"] { background: var(--card); color: var(--ink); font-weight: 700; box-shadow: 0 1px 2px rgba(42,28,19,.12); }
 .switch { flex: none; width: 52px; height: 44px; border: 0; padding: 0; background: transparent; position: relative; }
 .switch::before { content: ""; position: absolute; left: 0; top: 8px; width: 50px; height: 28px; border-radius: 999px; background: var(--line2); transition: background .15s; }
 .switch::after { content: ""; position: absolute; left: 3px; top: 11px; width: 22px; height: 22px; border-radius: 999px; background: #fff; box-shadow: 0 1px 2px rgba(0,0,0,.25); transition: left .15s; }
-.switch[aria-pressed="true"]::before { background: var(--green); }
+.switch[aria-pressed="true"]::before { background: var(--accent); }
 .switch[aria-pressed="true"]::after { left: 25px; }
 
 /* Welcome */
-.welcome { min-height: 100%; padding: 56px 28px calc(28px + var(--safe-b)); display: flex; flex-direction: column; gap: 22px; }
-.welcome .hero { display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center; }
-.welcome .mark { width: 84px; height: 84px; border-radius: 24px; background: var(--green); color: #fff; display: flex; align-items: center; justify-content: center; }
-.welcome .mark svg.i { width: 46px; height: 46px; stroke-width: 1.5; }
-.welcome .script { font-family: var(--hand); font-weight: 700; font-size: 30px; color: var(--green); line-height: 1; margin-top: 4px; }
-.welcome h1 { margin: 0; font-size: 44px; line-height: 1; font-weight: 800; }
-.welcome .lede { margin: 0; max-width: 300px; font-size: 16.5px; color: var(--muted); }
-.lane { display: flex; gap: 10px; justify-content: center; }
-.lane span { width: 22px; height: 4px; border-radius: 2px; background: var(--green); opacity: .35; }
-.two { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.welcome { min-height: 100%; padding: 64px 28px calc(28px + var(--safe-b)); display: flex; flex-direction: column; gap: 22px; }
+.welcome .hero { display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center; }
+.welcome .mark { width: 84px; height: 62px; border-radius: 6px; background: var(--card); position: relative; box-shadow: 4px 4px 0 var(--accent); transform: rotate(-4deg); margin-bottom: 12px; }
+.welcome .mark::before { content: ""; position: absolute; right: 9px; top: 9px; width: 16px; height: 20px; border: 2px dashed var(--accent); }
+.welcome .mark::after { content: ""; position: absolute; left: 10px; top: 20px; width: 34px; height: 18px; border-top: 2px solid var(--line2); border-bottom: 2px solid var(--line2); }
+.welcome .script { font-family: var(--hand); font-weight: 700; font-size: 32px; color: var(--accent); line-height: 1; transform: rotate(-3deg); }
+.welcome h1 { margin: 0; font-family: var(--serif); font-weight: 400; font-size: 52px; line-height: 1; }
+.welcome .lede { margin: 0; max-width: 300px; font-size: 16.5px; color: var(--muted2); }
+.two { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.two > * { min-width: 0; }
+input[type="date"].field, input[type="time"].field { min-width: 0; -webkit-appearance: none; appearance: none; }
 
-/* Day */
-.day-head { height: 64px; padding: 10px 12px 0 20px; display: flex; align-items: center; gap: 6px; }
-.day-head .name { flex-grow: 1; font-size: 20px; font-weight: 800; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.sign { color: #fff; background: var(--green); border-radius: 16px; padding: 5px; }
-.sign .in { border: 2px solid rgba(255,255,255,.9); border-radius: 12px; padding: 8px 6px; display: flex; align-items: center; gap: 4px; }
-.sign .icon-btn { color: #fff; }
-.sign .txt { flex-grow: 1; text-align: center; display: flex; flex-direction: column; gap: 2px; }
-.sign .k { font-size: 11.5px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.82); }
-.sign .d { font-size: 23px; font-weight: 800; line-height: 1.1; }
-.today-link { align-self: center; }
-.greet { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 10px 16px 4px; }
-.greet label { display: block; font-family: var(--hand); font-size: 24px; font-weight: 700; color: var(--green); line-height: 1; }
-.greet input { width: 100%; border: 0; background: transparent; outline: none; padding: 2px 0 8px; font-size: 26px !important; font-weight: 800; text-transform: uppercase; letter-spacing: .01em; }
+/* Today */
+.day-top { padding-top: 16px; }
+.day-nav { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.day-nav .k { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); text-align: center; }
+.today-link { align-self: center; margin: -8px 0 -6px; }
+.greet { display: flex; flex-direction: column; align-items: flex-start; }
+.greet label { font-family: var(--hand); font-size: 28px; font-weight: 700; color: var(--accent); line-height: 1; transform: rotate(-3deg); margin-left: 2px; }
+.greet input { width: 100%; border: 0; background: transparent; outline: none; padding: 0; font-family: var(--serif); font-size: 46px !important; line-height: 1.1; letter-spacing: -.01em; }
 .greet input::placeholder { color: var(--line2); }
+.prog { display: flex; flex-direction: column; gap: 6px; }
+.prog .track { position: relative; height: 14px; }
+.prog .track::before { content: ""; position: absolute; left: 0; right: 0; top: 6px; border-top: 2px dotted var(--line2); }
+.prog .fill { position: absolute; left: 0; top: 5px; height: 4px; border-radius: 2px; background: var(--accent); }
+.prog .dot { position: absolute; top: 1px; width: 12px; height: 12px; margin-left: -6px; border-radius: 6px; background: var(--accent); box-shadow: 0 0 0 3px var(--ground), 0 0 0 4px var(--accent); }
+.prog .lab { display: flex; justify-content: space-between; gap: 8px; font-family: var(--mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.mosaic { display: grid; grid-template-columns: 2fr 1fr; grid-template-rows: 112px 112px; gap: 8px; }
+.mosaic .thumb { width: auto; height: auto; border-radius: 14px; }
+.mosaic .big { grid-row: span 2; }
+.mosaic .tall { grid-row: span 2; }
+.mosaic .more { position: absolute; inset: 0; background: rgba(42,28,19,.45); color: #FFF8EE; display: flex; align-items: center; justify-content: center; font-family: var(--mono); font-size: 18px; font-weight: 600; }
+.mosaic.empty-m { grid-template-columns: 1fr; grid-template-rows: 120px; }
+.make { display: flex; align-items: center; gap: 14px; width: 100%; padding: 14px 16px; min-height: 64px; border: 0; border-radius: 14px; background: var(--accent); color: #FFF8EE; text-align: left; }
+.make:active { background: var(--accent-d); }
+.make .mini { flex: none; width: 46px; height: 34px; border-radius: 3px; background: var(--card); position: relative; box-shadow: 2px 2px 0 rgba(42,28,19,.25); }
+.make .mini::before { content: ""; position: absolute; right: 4px; top: 4px; width: 9px; height: 11px; border: 1.5px dashed var(--accent); }
+.make .mini::after { content: ""; position: absolute; left: 5px; top: 9px; width: 18px; height: 12px; border-top: 1.5px solid var(--line2); border-bottom: 1.5px solid var(--line2); }
+.make .tx { display: flex; flex-direction: column; flex: 1; min-width: 0; }
+.make .t1 { font-weight: 700; font-size: 16px; }
+.make .t2 { font-size: 13px; opacity: .92; }
+.notepad { background: var(--card); border-radius: 14px; padding: 14px 18px 8px; display: flex; flex-direction: column; gap: 2px; }
+.notepad textarea { border: 0; outline: none; resize: none; width: 100%; min-height: 92px; padding: 0; background: repeating-linear-gradient(transparent 0 29px, #E6D3B8 29px 30px); font-family: var(--hand); font-size: 22px !important; line-height: 30px; color: var(--ink2); }
+.notepad textarea::placeholder { color: #A68C70; }
+.stops { display: grid; grid-template-columns: 76px minmax(0, 1fr); column-gap: 14px; }
+.stop-k { font-family: var(--mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); padding: 18px 10px 0 0; border-right: 2px dotted var(--line2); }
+.stop-k.last { border-right-color: transparent; }
+.stop-c { position: relative; padding: 6px 0; }
+.stop-c::before { content: ""; position: absolute; left: -21px; top: 21px; width: 10px; height: 10px; border-radius: 5px; background: var(--ochre); box-shadow: 0 0 0 3px var(--ground); }
+.stop-c.dinner::before, .stop-c.evening::before { background: var(--accent); }
+.stop-c.night::before { background: var(--ink); }
 
-.thumbs { display: flex; gap: 8px; overflow-x: auto; margin-right: -16px; padding-right: 16px; scrollbar-width: none; }
+.thumbs { display: flex; gap: 8px; overflow-x: auto; margin-right: -20px; padding-right: 20px; scrollbar-width: none; }
 .thumb { flex: none; position: relative; width: 84px; height: 84px; border-radius: 12px; overflow: hidden; border: 0; padding: 0; background: var(--seg); }
 .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.thumb.add { border: 1.5px dashed var(--green); background: transparent; color: var(--green); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; font-size: 12.5px; font-weight: 800; }
-.thumb[aria-pressed="true"]::after { content: ""; position: absolute; inset: 0; border: 4px solid var(--green); border-radius: 12px; }
-.thumb .tick { position: absolute; right: 5px; bottom: 5px; width: 22px; height: 22px; border-radius: 999px; background: var(--green); color: #fff; display: none; align-items: center; justify-content: center; }
+.thumb.add { border: 1.5px dashed var(--line2); background: var(--card); color: var(--muted); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 13px; font-weight: 600; }
+.thumb[aria-pressed="true"]::after { content: ""; position: absolute; inset: 0; border: 4px solid var(--accent); border-radius: 12px; }
+.thumb .tick { position: absolute; right: 5px; bottom: 5px; width: 22px; height: 22px; border-radius: 999px; background: var(--accent); color: #fff; display: none; align-items: center; justify-content: center; }
 .thumb[aria-pressed="true"] .tick { display: flex; }
 .thumb .tick svg.i { width: 14px; height: 14px; stroke-width: 3; }
-.thumb .x { position: absolute; top: 4px; right: 4px; width: 28px; height: 28px; border-radius: 999px; border: 0; background: rgba(23,34,29,.72); color: #fff; display: flex; align-items: center; justify-content: center; }
+.thumb .x { position: absolute; top: 4px; right: 4px; width: 28px; height: 28px; border-radius: 999px; border: 0; background: rgba(42,28,19,.72); color: #fff; display: flex; align-items: center; justify-content: center; }
 .thumb .x svg.i { width: 15px; height: 15px; stroke-width: 2.4; }
-.thumb .badge { position: absolute; left: 5px; bottom: 5px; width: 20px; height: 20px; border-radius: 6px; background: rgba(255,253,248,.92); color: var(--green); display: flex; align-items: center; justify-content: center; }
+.thumb .badge { position: absolute; left: 6px; bottom: 6px; width: 22px; height: 22px; border-radius: 6px; background: rgba(250,244,232,.92); color: var(--accent-d); display: flex; align-items: center; justify-content: center; }
 .thumb .badge svg.i { width: 13px; height: 13px; stroke-width: 2.2; }
+.thumb .cover-tag { position: absolute; left: 10px; bottom: 10px; font-family: var(--mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: #FFF8EE; background: rgba(42,28,19,.62); padding: 3px 7px; border-radius: 4px; }
 
-.slot-group { display: flex; flex-direction: column; gap: 8px; }
-.slot-label { display: flex; align-items: center; gap: 8px; }
-.slot-label::after { content: ""; flex-grow: 1; height: 1px; background: var(--line); }
-.place { display: flex; gap: 12px; align-items: flex-start; width: 100%; text-align: left; background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 12px 14px; }
-.place .pin { flex: none; width: 40px; height: 40px; border-radius: 10px; background: var(--soft); color: var(--green); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.place { display: flex; gap: 12px; align-items: center; width: 100%; text-align: left; background: var(--card); border: 0; border-radius: 12px; padding: 12px 14px; }
+.place .pin { flex: none; width: 44px; height: 44px; border-radius: 8px; background: var(--soft); color: var(--accent-d); display: flex; align-items: center; justify-content: center; overflow: hidden; order: 2; }
+.place .pin.none { display: none; }
 .place .pin img { width: 100%; height: 100%; object-fit: cover; }
 .place .pin svg.i { width: 19px; height: 19px; }
 .place .body { flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
-.place .nm { font-size: 16px; font-weight: 800; line-height: 1.2; overflow-wrap: anywhere; }
-.place .meta { font-size: 13px; color: var(--muted); }
-.place .nt { font-size: 13.5px; opacity: .85; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-.empty { text-align: center; padding: 22px 18px; border: 1px dashed var(--line2); border-radius: 16px; color: var(--muted); font-size: 14.5px; }
-.fab { position: absolute; right: 16px; bottom: calc(var(--nav-h) + var(--safe-b) + 14px); z-index: 5; min-height: 56px; padding: 0 20px 0 16px; border: 0; border-radius: 18px; background: var(--deep); color: #fff; display: flex; align-items: center; gap: 8px; font-size: 16px; font-weight: 800; box-shadow: 0 8px 24px rgba(19,74,50,.28); }
+.place .nm { font-size: 16px; font-weight: 700; line-height: 1.25; overflow-wrap: anywhere; }
+.place .meta { font-size: 13px; color: var(--muted2); }
+.place .nt { font-size: 13.5px; color: var(--muted2); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.empty { text-align: center; padding: 22px 18px; border: 1.5px dashed var(--line2); border-radius: 14px; color: var(--muted2); font-size: 14.5px; }
 
 /* Postcard tiles */
-.mail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px 14px; }
-.mail { border: 0; background: transparent; padding: 0; text-align: left; display: flex; flex-direction: column; gap: 8px; }
-.mail-img { display: block; aspect-ratio: 3 / 2; border-radius: 4px; overflow: hidden; background: var(--seg); box-shadow: 0 6px 16px rgba(23,34,29,.18); transform: rotate(-1.2deg); }
+.mail-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px 14px; }
+.mail { min-width: 0; border: 0; background: transparent; padding: 0; text-align: left; display: flex; flex-direction: column; gap: 8px; }
+.mail-img { display: block; aspect-ratio: 3 / 2; border-radius: 3px; overflow: hidden; background: var(--seg); box-shadow: 0 6px 14px rgba(42,28,19,.2); transform: rotate(-1.5deg); }
 .mail:nth-child(even) .mail-img { transform: rotate(1.2deg); }
 .mail-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .mail-cap { display: flex; flex-direction: column; gap: 1px; padding: 0 2px; }
-.mail-cap b { font-size: 14.5px; font-weight: 800; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.mail-cap span { font-size: 12px; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.mail-cap b { font-size: 15px; font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.mail-cap span { font-family: var(--mono); font-size: 10.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
 /* Flippable postcard */
 .pc { perspective: 1600px; cursor: pointer; }
 .pc-in { position: relative; aspect-ratio: 3 / 2; transition: transform .55s cubic-bezier(.3,.7,.3,1); transform-style: preserve-3d; }
 .pc.flipped .pc-in { transform: rotateY(180deg); }
-.pc-face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 6px; overflow: hidden; background: #FBF6EA; box-shadow: 0 12px 30px rgba(23,34,29,.22); }
+.pc-face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 4px; overflow: hidden; background: #FBF5EA; box-shadow: 0 12px 28px rgba(42,28,19,.24); }
 .pc-face img { width: 100%; height: 100%; display: block; }
 .pc-face img:not([src]) { visibility: hidden; }
 .pc-back { transform: rotateY(180deg); }
 @media (prefers-reduced-motion: reduce) { .pc-in { transition: none; } }
 
-/* Timeline */
-.tl { position: relative; padding: 4px 16px 0 16px; }
-.tl-day { position: relative; padding: 0 0 22px 30px; }
-.tl-day::before { content: ""; position: absolute; left: 9px; top: 6px; bottom: -6px; width: 2px; background: var(--line2); }
-.tl-day:last-child::before { display: none; }
-.tl-dot { position: absolute; left: 2px; top: 2px; width: 16px; height: 16px; border-radius: 999px; background: var(--card); border: 3px solid var(--green); }
-.tl-day.empty-day .tl-dot { border-color: var(--line2); }
-.tl-day.is-today .tl-dot { background: var(--green); }
-.tl-hd { width: 100%; border: 0; background: transparent; padding: 0; text-align: left; display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
-.tl-hd b { font-size: 17px; font-weight: 800; }
-.tl-greet { font-family: var(--hand); font-size: 21px; font-weight: 700; color: var(--green); line-height: 1.1; margin-top: 2px; }
-.tl-tags { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 6px; }
-.tl-note { margin: 6px 0 0; font-size: 14px; color: var(--muted); }
-.tl-photos { display: flex; gap: 6px; margin-top: 8px; }
-.tl-photos .thumb { width: 56px; height: 56px; border-radius: 9px; }
-.tl-photos .more { flex: none; width: 56px; height: 56px; border-radius: 9px; background: var(--seg); display: flex; align-items: center; justify-content: center; font-family: var(--mono); font-size: 13px; color: var(--muted); }
-.tl-items { display: flex; flex-direction: column; gap: 6px; margin-top: 8px; }
-.tl-item { display: grid; grid-template-columns: 82px minmax(0,1fr); gap: 8px; align-items: baseline; width: 100%; text-align: left; background: var(--card); border-radius: 10px; padding: 9px 12px; border: 1px solid var(--line); }
-.tl-item .s { font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--green); }
-.tl-item .n { font-size: 15px; font-weight: 700; overflow-wrap: anywhere; }
+/* Journey timeline */
+.tl { display: flex; flex-direction: column; gap: 14px; }
+.tl-day { display: grid; grid-template-columns: 52px minmax(0, 1fr); gap: 12px; }
+.tl-date { display: flex; flex-direction: column; align-items: center; gap: 2px; padding-top: 6px; border: 0; background: transparent; }
+.tl-date .n { font-family: var(--serif); font-size: 26px; line-height: 1; }
+.tl-date .w { font-family: var(--mono); font-size: 9.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.tl-date .rail { flex: 1; min-height: 12px; border-left: 2px dotted var(--line2); margin-top: 6px; }
+.tl-day:last-child .rail { display: none; }
+.tl-day.is-today .tl-date .n { color: var(--accent); }
+.tl-card { background: var(--card); border-radius: 14px; padding: 14px; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.tl-day.is-today .tl-card { box-shadow: 0 0 0 2px var(--accent); }
+.tl-day.empty-day .tl-card { background: transparent; border: 1.5px dashed var(--line2); }
+.tl-hd { border: 0; background: transparent; padding: 0; text-align: left; display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+.tl-hd b { font-family: var(--serif); font-weight: 400; font-size: 21px; line-height: 1.2; overflow-wrap: anywhere; }
+.tl-badge { flex: none; font-family: var(--mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: #FFF8EE; background: var(--accent); padding: 2px 7px; border-radius: 4px; }
+.tl-note { margin: 0; font-family: var(--hand); font-size: 20px; line-height: 1.2; color: var(--ink2); }
+.tl-note.plain { font-family: var(--sans); font-size: 14px; color: var(--muted2); }
+.tl-tags { display: flex; gap: 4px; flex-wrap: wrap; }
+.tl-photos { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; }
+.tl-photos .thumb { width: auto; height: 56px; border-radius: 8px; }
+.tl-photos .more { height: 56px; border-radius: 8px; background: var(--seg); display: flex; align-items: center; justify-content: center; font-family: var(--mono); font-size: 13px; color: var(--muted2); }
+.tl-items { display: flex; flex-direction: column; gap: 2px; }
+.tl-item { display: grid; grid-template-columns: 76px minmax(0,1fr); gap: 8px; align-items: baseline; width: 100%; text-align: left; background: transparent; border: 0; border-top: 1px solid var(--seg); padding: 8px 0 6px; }
+.tl-item .s { font-family: var(--mono); font-size: 10.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--accent-d); }
+.tl-item .n { font-size: 15px; font-weight: 600; overflow-wrap: anywhere; }
 
-/* Tab bar */
-.tabbar { position: absolute; left: 0; right: 0; bottom: 0; height: calc(var(--nav-h) + var(--safe-b)); padding: 6px 4px var(--safe-b); background: var(--card); border-top: 1px solid var(--line); display: flex; gap: 2px; z-index: 6; }
-.tabbar button { flex: 1 1 0; min-width: 0; min-height: 52px; border: 0; background: transparent; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; color: var(--muted); }
-.tabbar .pill { width: 52px; height: 30px; border-radius: 999px; display: flex; align-items: center; justify-content: center; }
-.tabbar .t { font-size: 11.5px; font-weight: 600; }
-.tabbar button[aria-current="page"] { color: var(--green); }
-.tabbar button[aria-current="page"] .pill { background: var(--soft); }
-.tabbar button[aria-current="page"] .t { font-weight: 800; }
+/* Trip */
+.stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); background: var(--card); border-radius: 14px; padding: 14px 4px; }
+.stats div { display: flex; flex-direction: column; align-items: center; }
+.stats div + div { border-left: 1px solid var(--seg); }
+.stats b { font-family: var(--serif); font-weight: 400; font-size: 26px; line-height: 1.1; }
+.stats span { font-family: var(--mono); font-size: 9.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.stamps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.stamp { height: 82px; padding: 4px; background: #FBF5EA; border: 2px dashed var(--line2); box-shadow: 0 2px 4px rgba(42,28,19,.15); transform: rotate(-2deg); }
+.stamp:nth-child(3n+2) { transform: rotate(1.5deg); }
+.stamp:nth-child(3n) { transform: rotate(-.5deg); }
+.stamp .in { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; padding: 4px; color: #FFF5E4; text-align: center; }
+.stamp .nm { font-family: var(--slab); font-size: 12px; line-height: 1.1; letter-spacing: .02em; overflow-wrap: anywhere; }
+.stamp .d { font-family: var(--mono); font-size: 8.5px; letter-spacing: .06em; text-transform: uppercase; opacity: .9; }
+.stamp.next { background: transparent; box-shadow: none; transform: none; border-style: dashed; }
+.stamp.next .in { color: var(--muted); }
+.backup { background: var(--warn-bg); border-radius: 14px; padding: 16px; display: flex; flex-direction: column; gap: 12px; color: #3B1F10; }
+.backup.ok { background: var(--card); color: var(--ink); }
+.backup .row { display: flex; gap: 12px; align-items: flex-start; }
+.backup b { display: block; font-size: 15.5px; }
+.backup p { margin: 2px 0 0; font-size: 14px; color: inherit; opacity: .9; }
+.backup .two .btn-outline { width: 100%; min-height: 46px; }
+.set-list { background: var(--card); border-radius: 14px; padding: 4px 16px; }
+.set-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 8px 0; min-height: 52px; }
+.set-row + .set-row, .set-row + .set-block, .set-block + .set-row { border-top: 1px solid var(--seg); }
+.set-row .sub { display: block; font-size: 13px; color: var(--muted2); }
+.set-block { padding: 12px 0; display: flex; flex-direction: column; gap: 10px; }
+.tag-edit { display: inline-flex; align-items: center; gap: 2px; padding-right: 4px; }
+.tag-edit button { border: 0; background: transparent; color: var(--muted); width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; }
+.tag-edit svg.i { width: 15px; height: 15px; }
+
+/* Tab bar with the raised + in the middle */
+.tabbar { position: absolute; left: 0; right: 0; bottom: 0; height: calc(var(--nav-h) + var(--safe-b)); padding: 6px 4px var(--safe-b); background: var(--card); border-top: 1px solid var(--line); display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); align-items: start; z-index: 6; }
+.tabbar button { min-width: 0; min-height: 56px; border: 0; background: transparent; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; color: var(--muted); font-size: 11.5px; font-weight: 600; }
+.tabbar button[aria-current="page"] { color: var(--accent); font-weight: 700; }
+.tabbar .tab-add { justify-self: center; margin-top: -24px; width: 58px; height: 58px; min-height: 0; border-radius: 29px; background: var(--accent); color: #FFF8EE; box-shadow: 0 6px 14px rgba(140,59,28,.35), 0 0 0 5px var(--ground); }
+.tabbar .tab-add:active { background: var(--accent-d); }
+.tabbar .tab-add svg.i { width: 26px; height: 26px; stroke-width: 2.2; }
+.add-menu { display: flex; flex-direction: column; gap: 8px; }
+.add-menu button { display: flex; align-items: center; gap: 14px; min-height: 64px; padding: 10px 14px; border: 0; border-radius: 14px; background: var(--ground); text-align: left; }
+.add-menu .ic { flex: none; width: 44px; height: 44px; border-radius: 22px; background: var(--soft); color: var(--accent-d); display: flex; align-items: center; justify-content: center; }
+.add-menu b { display: block; font-size: 16px; }
+.add-menu span.s { display: block; font-size: 13px; color: var(--muted2); }
 
 /* Composer */
 #s-compose { z-index: 8; background: var(--ground); padding-bottom: calc(var(--safe-b) + 28px); }
-#s-compose .pad { gap: 14px; }
+#s-compose .pad { gap: 16px; }
 .row-between { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.style-pick { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.style-pick button { min-height: 44px; border-radius: 12px; border: 1px solid var(--line); background: var(--card); font-size: 14px; font-weight: 600; }
+.style-pick button[aria-pressed="true"] { border-color: var(--ink); background: var(--ink); color: var(--ground); }
 
 /* Sheets, lightbox, toast */
 @keyframes up { from { transform: translateY(24px); opacity: .5; } to { transform: none; opacity: 1; } }
 @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
-.scrim { position: absolute; inset: 0; background: rgba(23,34,29,.45); z-index: 10; animation: fade .2s ease-out; }
-.sheet { overscroll-behavior: contain; position: absolute; left: 0; right: 0; bottom: 0; max-height: calc(100% - 40px); overflow-y: auto; background: var(--card); border-radius: 26px 26px 0 0; padding: 10px 20px calc(24px + var(--safe-b)); display: flex; flex-direction: column; gap: 14px; z-index: 11; animation: up .24s ease-out; }
+.scrim { position: absolute; inset: 0; background: rgba(42,28,19,.5); z-index: 10; animation: fade .2s ease-out; }
+.sheet { overscroll-behavior: contain; position: absolute; left: 0; right: 0; bottom: 0; max-height: calc(100% - 40px); overflow-y: auto; background: var(--ground); border-radius: 24px 24px 0 0; padding: 10px 20px calc(24px + var(--safe-b)); display: flex; flex-direction: column; gap: 16px; z-index: 11; animation: up .24s ease-out; }
 .sheet .grab { align-self: center; width: 40px; height: 5px; border-radius: 3px; background: var(--line2); }
 .sheet-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
-.sheet-head h2 { margin: 0; font-size: 22px; font-weight: 800; overflow-wrap: anywhere; }
-.sheet .field { background: var(--ground); }
-.sheet .thumb.add { background: transparent; }
+.sheet-head h2 { margin: 0; font-family: var(--serif); font-weight: 400; font-size: 25px; line-height: 1.15; overflow-wrap: anywhere; }
+.sheet .thumb.add { background: var(--card); }
 .paste-row { display: flex; gap: 8px; }
 .paste-row .field { flex-grow: 1; min-width: 0; }
 .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .btn-row { display: flex; gap: 8px; flex-wrap: wrap; }
 .btn-row > * { flex: 1 1 0; }
 .detail-meta { display: flex; flex-direction: column; gap: 6px; font-size: 14.5px; }
-.detail-meta div { display: flex; gap: 8px; align-items: center; color: var(--muted); }
+.detail-meta div { display: flex; gap: 8px; align-items: center; color: var(--muted2); }
 .detail-meta svg.i { width: 18px; height: 18px; }
-.detail-notes { white-space: pre-wrap; font-size: 15px; background: var(--ground); border-radius: 12px; padding: 12px 14px; -webkit-user-select: text; user-select: text; }
-.lb { position: absolute; inset: 0; z-index: 15; background: #0D1310; display: flex; flex-direction: column; animation: fade .15s ease-out; color: #fff; }
+.detail-notes { white-space: pre-wrap; font-size: 15px; background: var(--card); border-radius: 12px; padding: 12px 14px; -webkit-user-select: text; user-select: text; }
+.lb { position: absolute; inset: 0; z-index: 15; background: #140D09; display: flex; flex-direction: column; animation: fade .15s ease-out; color: #fff; }
 .lb .bar { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: calc(var(--safe-t) + 8px) 8px 8px 16px; }
 .lb .bot { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 16px calc(var(--safe-b) + 16px); font-size: 14px; }
 .lb .icon-btn { color: #fff; }
@@ -232,15 +306,10 @@ textarea.field { padding: 12px 14px; min-height: 96px; resize: vertical; line-he
 .lb .nav { position: absolute; top: 70px; bottom: 90px; width: 35%; border: 0; background: transparent; }
 .lb .nav.l { left: 0; } .lb .nav.r { right: 0; }
 .lb .btn-outline { border-color: rgba(255,255,255,.5); color: #fff; }
-.toast { position: absolute; left: 16px; right: 16px; bottom: calc(var(--nav-h) + var(--safe-b) + 14px); z-index: 20; background: var(--ink); color: #fff; border-radius: 14px; padding: 12px 14px; display: flex; align-items: center; gap: 12px; font-size: 14.5px; box-shadow: 0 8px 24px rgba(0,0,0,.2); animation: up .2s ease-out; }
+.toast { position: absolute; left: 16px; right: 16px; bottom: calc(var(--nav-h) + var(--safe-b) + 18px); z-index: 20; background: var(--ink); color: #FAF4E8; border-radius: 14px; padding: 10px 10px 10px 16px; display: flex; align-items: center; gap: 6px; font-size: 14.5px; box-shadow: 0 8px 24px rgba(0,0,0,.22); animation: up .2s ease-out; }
 .toast.top { top: calc(var(--safe-t) + 12px); bottom: auto; }
 .toast span { flex-grow: 1; }
-.toast button { border: 0; background: transparent; color: #9FD3B6; font-weight: 800; min-height: 36px; padding: 0 6px; }
-.set-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 4px 0; }
-.set-row + .set-row { border-top: 1px solid var(--line); padding-top: 12px; }
-.tag-edit { display: inline-flex; align-items: center; gap: 2px; padding-right: 4px; }
-.tag-edit button { border: 0; background: transparent; color: var(--muted); width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; }
-.tag-edit svg.i { width: 15px; height: 15px; }
+.toast button { border: 0; background: transparent; color: #F2B98A; font-weight: 700; min-height: 40px; padding: 0 8px; }
 </style>
 </head>
 <body>
@@ -250,11 +319,10 @@ textarea.field { padding: 12px 14px; min-height: 96px; resize: vertical; line-he
   <section class="screen" id="s-welcome" hidden>
     <div class="welcome">
       <div class="hero">
-        <div class="mark"><svg class="i"><use href="#i-card"/></svg></div>
+        <div class="mark" aria-hidden="true"></div>
         <div class="script">Greetings from</div>
         <h1>Postcards</h1>
-        <div class="lane"><span></span><span></span><span></span></div>
-        <p class="lede">Tag each day, save the places you went, and turn any day into a postcard.</p>
+        <p class="lede">Log each day, save the places you stop, and turn any day into a postcard.</p>
       </div>
       <div>
         <label class="lbl" for="w-name">Trip name</label>
@@ -269,55 +337,49 @@ textarea.field { padding: 12px 14px; min-height: 96px; resize: vertical; line-he
     </div>
   </section>
 
-  <!-- Day -->
+  <!-- Today -->
   <section class="screen tabbed" id="s-day" hidden>
-    <div class="day-head"><span class="name" id="d-trip">Postcards</span></div>
-    <div class="pad">
-      <div class="sign"><div class="in">
-        <button class="icon-btn" id="d-prev" aria-label="Previous day"><svg class="i"><use href="#i-left"/></svg></button>
-        <div class="txt"><span class="k mono" id="d-num">Day 1</span><span class="d" id="d-date">Fri 2 Oct</span></div>
-        <button class="icon-btn" id="d-next" aria-label="Next day"><svg class="i"><use href="#i-right"/></svg></button>
-      </div></div>
+    <div class="pad day-top">
+      <div class="day-nav">
+        <button class="icon-btn ring" id="d-prev" aria-label="Previous day"><svg class="i"><use href="#i-left"/></svg></button>
+        <span class="k" id="d-num">Day 1</span>
+        <button class="icon-btn ring" id="d-next" aria-label="Next day"><svg class="i"><use href="#i-right"/></svg></button>
+      </div>
       <button class="link-btn today-link" id="d-today" hidden><svg class="i"><use href="#i-cal"/></svg>Back to today</button>
-
       <div class="greet"><label for="d-greet">Greetings from</label><input id="d-greet" autocomplete="off" enterkeyhint="done"></div>
+      <div class="prog" id="d-prog" hidden><div class="track"><span class="fill" id="d-fill"></span><span class="dot" id="d-dot"></span></div><div class="lab"><span id="d-pa"></span><span id="d-pb"></span></div></div>
 
-      <div class="sec-head"><span class="eyebrow">What we did</span></div>
-      <div class="chips" id="d-tags"></div>
-      <textarea class="field" id="d-note" rows="2" placeholder="A line about the day (this becomes the postcard message)" style="min-height:64px"></textarea>
+      <div class="mosaic" id="d-photos"></div>
 
-      <div class="sec-head"><span class="eyebrow">Photos</span><span class="eyebrow mono" id="d-pcount"></span></div>
-      <div class="thumbs" id="d-photos"></div>
-
-      <div class="sec-head"><span class="eyebrow">Postcard</span></div>
+      <button class="make" id="d-make"><span class="mini" aria-hidden="true"></span><span class="tx"><span class="t1" id="d-make-t">Make today's postcard</span><span class="t2" id="d-make-s"></span></span><svg class="i"><use href="#i-right"/></svg></button>
       <div class="mail-grid" id="d-cards" hidden></div>
-      <button class="btn-outline wide" id="d-make"><svg class="i"><use href="#i-card"/></svg>Make a postcard of this day</button>
 
-      <div class="sec-head"><span class="eyebrow">Places</span><span class="eyebrow mono" id="d-count"></span></div>
-      <div id="d-places" style="display:flex;flex-direction:column;gap:14px"></div>
+      <div class="chips" id="d-tags"></div>
+      <div class="notepad"><label class="eyebrow" for="d-note">Today's note</label><textarea id="d-note" rows="3" placeholder="A line about the day. It becomes the postcard message."></textarea></div>
+
+      <div class="sec-head"><h2 class="h2">The day's stops</h2><button class="link-btn" id="d-add"><svg class="i"><use href="#i-plus"/></svg>Add place</button></div>
+      <div id="d-places"></div>
     </div>
-    <button class="fab" id="d-add"><svg class="i"><use href="#i-plus"/></svg>Add place</button>
   </section>
 
-  <!-- Timeline -->
-  <section class="screen tabbed" id="s-timeline" hidden>
-    <div class="page-head"><h1 class="big-title">Timeline</h1><button class="link-btn" id="t-jump">Today</button></div>
-    <div class="tl" id="tl"></div>
-  </section>
-
-  <!-- Places -->
-  <section class="screen tabbed" id="s-places" hidden>
-    <div class="page-head"><h1 class="big-title">Places</h1><span class="eyebrow mono" id="p-count"></span></div>
+  <!-- Journey: timeline and places -->
+  <section class="screen tabbed" id="s-journey" hidden>
+    <div class="page-head"><div><h1 class="big-title">Journey</h1><span class="eyebrow" id="j-sub"></span></div></div>
     <div class="pad">
-      <input class="field" id="p-search" type="search" placeholder="Search names, notes, addresses" autocomplete="off">
-      <div class="chips scroll" id="p-cats"></div>
-      <div id="p-list" style="display:flex;flex-direction:column;gap:8px"></div>
+      <div class="seg" id="j-seg"><button data-v="timeline" aria-pressed="true">Timeline</button><button data-v="places" aria-pressed="false">Places</button></div>
+      <div class="tl" id="tl"></div>
+      <div id="j-places" hidden style="display:flex;flex-direction:column;gap:12px">
+        <input class="field" id="p-search" type="search" placeholder="Search names, notes, addresses" autocomplete="off">
+        <div class="chips scroll" id="p-cats"></div>
+        <span class="eyebrow" id="p-count"></span>
+        <div id="p-list" style="display:flex;flex-direction:column;gap:8px"></div>
+      </div>
     </div>
   </section>
 
   <!-- Mailbox -->
   <section class="screen tabbed" id="s-mailbox" hidden>
-    <div class="page-head"><h1 class="big-title">Mailbox</h1><span class="eyebrow mono" id="m-count"></span></div>
+    <div class="page-head"><div><h1 class="big-title">Mailbox</h1><span class="eyebrow" id="m-count"></span></div></div>
     <div class="pad">
       <div class="mail-grid" id="m-grid"></div>
     </div>
@@ -325,63 +387,59 @@ textarea.field { padding: 12px 14px; min-height: 96px; resize: vertical; line-he
 
   <!-- Trip -->
   <section class="screen tabbed" id="s-trip" hidden>
-    <div class="page-head"><h1 class="big-title">Trip</h1></div>
-    <div class="pad">
-      <div class="card" style="display:flex;flex-direction:column;gap:12px">
-        <div><label class="lbl" for="x-name">Trip name</label><input class="field" id="x-name"></div>
-        <div class="two">
-          <div><label class="lbl" for="x-start">First day</label><input class="field mono" id="x-start" type="date"></div>
-          <div><label class="lbl" for="x-end">Last day</label><input class="field mono" id="x-end" type="date"></div>
-        </div>
+    <div class="page-head"><div><h1 class="big-title" id="x-title">Trip</h1><span class="eyebrow" id="x-dates"></span></div><button class="btn-outline" id="x-edittrip" style="border-radius:22px;border-width:1px;border-color:var(--line);background:var(--card)">Edit trip</button></div>
+    <div class="pad" style="gap:22px">
+      <div class="stats" id="x-stats"></div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div class="sec-head" style="margin:0"><h2 class="h2">Stamp book</h2><span class="eyebrow" id="x-scount"></span></div>
+        <div class="stamps" id="x-stamps"></div>
       </div>
-      <div class="sec-head"><span class="eyebrow">Day tags</span></div>
-      <div class="card">
-        <div class="chips" id="x-tags"></div>
-        <div class="paste-row" style="margin-top:12px">
-          <input class="field" id="x-newtag" placeholder="New tag" autocomplete="off" style="background:var(--ground)">
-          <button class="btn-outline" id="x-addtag"><svg class="i"><use href="#i-plus"/></svg>Add</button>
-        </div>
-      </div>
-      <div class="sec-head"><span class="eyebrow">Backup</span></div>
-      <div class="card">
-        <div class="set-row"><span>Save a backup, photos included</span><button class="btn-outline" id="x-export">Export</button></div>
-        <div class="set-row"><span>Load a backup file</span><button class="btn-outline" id="x-import">Import</button></div>
+      <div class="backup" id="x-backup">
+        <div class="row"><svg class="i"><use href="#i-down"/></svg><div><b id="x-btitle">No backup yet</b><p>Photos live only on this phone. Back up every few days, and before clearing Chrome.</p></div></div>
+        <div class="two"><button class="btn-outline dark" id="x-export">Back up now</button><button class="btn-outline" id="x-import">Import</button></div>
         <input type="file" id="x-file" accept=".zip,.json,application/zip,application/json" hidden>
       </div>
-      <div class="note green"><svg class="i"><use href="#i-info"/></svg><span>Everything, including photos, is stored on this phone only. Export a backup now and then. To add places from Google Maps, tap Share on a place and choose Postcards, or copy the link and paste it in.</span></div>
-      <div class="sec-head"><span class="eyebrow">Stats</span></div>
-      <div class="card mono" id="x-stats" style="font-size:14px"></div>
+      <div class="set-list">
+        <div class="set-row"><span>Quick save from Google Maps<span class="sub">Share a place to Postcards and it saves straight to today</span></span><button class="switch" id="x-quick" aria-pressed="true" aria-label="Quick save from Google Maps"></button></div>
+        <div class="set-block">
+          <span>Day tags</span>
+          <div class="chips" id="x-tags"></div>
+          <div class="paste-row"><input class="field" id="x-newtag" placeholder="New tag" autocomplete="off"><button class="btn-outline" id="x-addtag"><svg class="i"><use href="#i-plus"/></svg>Add</button></div>
+        </div>
+        <div class="set-row"><span>Storage used</span><span class="muted mono" id="x-storage">…</span></div>
+      </div>
+      <div class="note"><svg class="i"><use href="#i-info"/></svg><span>To add a place from Google Maps, open it, tap <b>Share</b> and choose <b>Postcards</b>. You can also paste a link into Add place.</span></div>
     </div>
   </section>
 
   <!-- Postcard composer (opens over the tabs) -->
   <section class="screen" id="s-compose" hidden>
     <div class="bar-head">
-      <button class="icon-btn" id="c-back" aria-label="Back"><svg class="i"><use href="#i-left"/></svg></button>
+      <button class="icon-btn" id="c-back" aria-label="Close"><svg class="i"><use href="#i-x"/></svg></button>
       <h1 id="c-title">New postcard</h1>
-      <span class="eyebrow mono" id="c-date" style="padding-right:8px"></span>
+      <span class="eyebrow" id="c-date" style="padding-right:8px"></span>
     </div>
     <div class="pad">
       <div class="pc" id="c-pc" role="button" aria-label="Flip postcard">
         <div class="pc-in"><div class="pc-face"><img id="c-front" alt="Postcard front"></div><div class="pc-face pc-back"><img id="c-backimg" alt="Postcard back"></div></div>
       </div>
       <div class="seg" id="c-side"><button data-side="front" aria-pressed="true">Front</button><button data-side="back" aria-pressed="false">Back</button></div>
-
+      <div><span class="lbl">Style</span><div class="style-pick" id="c-style"><button data-style="letter" aria-pressed="true">Large letter</button><button data-style="poster" aria-pressed="false">Park poster</button><button data-style="linen" aria-pressed="false">Linen</button></div></div>
       <div><span class="lbl">Cover photo</span><div class="thumbs" id="c-photos"></div></div>
       <div><label class="lbl" for="c-greet">Greetings from</label><input class="field" id="c-greet" autocomplete="off"></div>
-      <div><label class="lbl" for="c-msg">Message</label><textarea class="field" id="c-msg" placeholder="Having a great time. Wish you were here!"></textarea></div>
+      <div><label class="lbl" for="c-msg">Message</label><textarea class="field" id="c-msg" placeholder="Having a great time. Wish you were here!" style="font-family:var(--hand);font-size:21px !important;line-height:1.2"></textarea></div>
       <div><label class="lbl" for="c-to">To (optional)</label><input class="field" id="c-to" placeholder="Mum and Dad" autocomplete="off"></div>
       <div class="card row-between" style="padding:6px 8px 6px 16px"><span>List the day's stops on the back</span><button class="switch" id="c-stops" aria-pressed="true" aria-label="List stops"></button></div>
-      <button class="btn-primary" id="c-save">Save postcard</button>
+      <button class="btn-primary" id="c-save">Save to Mailbox</button>
     </div>
   </section>
 
   <nav class="tabbar" id="tabbar" aria-label="Main" hidden>
-    <button data-tab="day"><span class="pill"><svg class="i"><use href="#i-cal"/></svg></span><span class="t">Day</span></button>
-    <button data-tab="timeline"><span class="pill"><svg class="i"><use href="#i-route"/></svg></span><span class="t">Timeline</span></button>
-    <button data-tab="places"><span class="pill"><svg class="i"><use href="#i-pin"/></svg></span><span class="t">Places</span></button>
-    <button data-tab="mailbox"><span class="pill"><svg class="i"><use href="#i-mail"/></svg></span><span class="t">Mailbox</span></button>
-    <button data-tab="trip"><span class="pill"><svg class="i"><use href="#i-gear"/></svg></span><span class="t">Trip</span></button>
+    <button data-tab="day"><svg class="i"><use href="#i-sun"/></svg>Today</button>
+    <button data-tab="journey"><svg class="i"><use href="#i-route"/></svg>Journey</button>
+    <button class="tab-add" id="tab-add" aria-label="Add"><svg class="i"><use href="#i-plus"/></svg></button>
+    <button data-tab="mailbox"><svg class="i"><use href="#i-mail"/></svg>Mailbox</button>
+    <button data-tab="trip"><svg class="i"><use href="#i-tent"/></svg>Trip</button>
   </nav>
 
   <div id="layer"></div>
@@ -397,12 +455,14 @@ textarea.field { padding: 12px 14px; min-height: 96px; resize: vertical; line-he
   <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
   <symbol id="i-cal" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></symbol>
   <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0114 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></symbol>
-  <symbol id="i-route" viewBox="0 0 24 24"><circle cx="6" cy="19" r="2"/><circle cx="18" cy="5" r="2"/><path d="M8 19h8.5a3.5 3.5 0 000-7h-9a3.5 3.5 0 010-7H16"/></symbol>
-  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 6.5l8.5 6.5 8.5-6.5"/></symbol>
+  <symbol id="i-route" viewBox="0 0 24 24"><circle cx="6" cy="5" r="2"/><circle cx="18" cy="19" r="2"/><path d="M8 5h7a3.5 3.5 0 010 7H9a3.5 3.5 0 000 7h7"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 8l9 6 9-6"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M5.6 18.4L7 17M17 7l1.4-1.4"/></symbol>
+  <symbol id="i-tent" viewBox="0 0 24 24"><path d="M2 20h20M12 4L3.5 20M12 4l8.5 16M12 13l-3 7M12 13l3 7"/></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M4 20h16"/></symbol>
   <symbol id="i-card" viewBox="0 0 24 24"><rect x="2.5" y="5" width="19" height="14" rx="2"/><rect x="15" y="7.5" width="4" height="4.5" rx=".5"/><path d="M12 8v9M14.5 14.5h4.5M14.5 16.8h3M5 9h4.5M5 11.5h5M5 14h3.5"/></symbol>
   <symbol id="i-camera" viewBox="0 0 24 24"><path d="M4 8h3l1.5-2.5h7L17 8h3a1 1 0 011 1v9a1 1 0 01-1 1H4a1 1 0 01-1-1V9a1 1 0 011-1z"/><circle cx="12" cy="13" r="3.5"/></symbol>
   <symbol id="i-share" viewBox="0 0 24 24"><path d="M12 15V3M7.5 7.5L12 3l4.5 4.5M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/></symbol>
-  <symbol id="i-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 00.3 1.8l.1.1a2 2 0 11-2.8 2.8l-.1-.1a1.7 1.7 0 00-1.8-.3 1.7 1.7 0 00-1 1.5V21a2 2 0 11-4 0v-.1a1.7 1.7 0 00-1.1-1.5 1.7 1.7 0 00-1.8.3l-.1.1a2 2 0 11-2.8-2.8l.1-.1a1.7 1.7 0 00.3-1.8 1.7 1.7 0 00-1.5-1H3a2 2 0 110-4h.1a1.7 1.7 0 001.5-1.1 1.7 1.7 0 00-.3-1.8l-.1-.1a2 2 0 112.8-2.8l.1.1a1.7 1.7 0 001.8.3H9a1.7 1.7 0 001-1.5V3a2 2 0 114 0v.1a1.7 1.7 0 001 1.5 1.7 1.7 0 001.8-.3l.1-.1a2 2 0 112.8 2.8l-.1.1a1.7 1.7 0 00-.3 1.8V9a1.7 1.7 0 001.5 1H21a2 2 0 110 4h-.1a1.7 1.7 0 00-1.5 1z"/></symbol>
   <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
   <symbol id="i-ext" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5"/></symbol>
   <symbol id="i-edit" viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16v4z"/></symbol>
@@ -429,8 +489,9 @@ function loadState() {
 }
 let S = loadState() || { onboarded: false, trip: { name: "", start: "", end: "" }, tagLib: DEFAULT_TAGS.slice(), days: {}, places: [] };
 S.cards ||= []; S.lastTo ||= ""; S.places.forEach((p) => { p.photos ||= []; });
+S.quickSave ??= true; S.lastBackup ??= 0;
 const save = () => { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch { toast("Couldn't save. Phone storage may be full."); } };
-let cur = iso(new Date()), tab = "day", catFilter = "All";
+let cur = iso(new Date()), tab = "day", catFilter = "All", jview = "timeline";
 
 // ================= Utils =================
 const $ = (id) => document.getElementById(id);
@@ -447,7 +508,7 @@ function tripLen() { return S.trip.start && S.trip.end ? diffDays(S.trip.start, 
 function inTrip(s) { const n = dayNum(s), len = tripLen(); return n != null && n >= 1 && (!len || n <= len); }
 function slotForNow(d = new Date()) {
   const h = d.getHours() + d.getMinutes() / 60;
-  if (h < 10) return "breakfast"; if (h < 11.5) return "morning"; if (h < 14) return "lunch";
+  if (h < 4.5) return "night"; if (h < 10) return "breakfast"; if (h < 11.5) return "morning"; if (h < 14) return "lunch";
   if (h < 17) return "afternoon"; if (h < 20.5) return "dinner"; if (h < 22.5) return "evening"; return "night";
 }
 function fmtTime(t) { if (!t) return ""; const [h, m] = t.split(":").map(Number); return ((h % 12) || 12) + ":" + String(m).padStart(2, "0") + (h < 12 ? "am" : "pm"); }
@@ -589,25 +650,28 @@ window.addEventListener("popstate", () => {
   if (stack.length) { stack.pop()(); return; }
   if (tabPushed) { tabPushed = false; show("day"); }
 });
-const SCREENS = ["welcome", "day", "timeline", "places", "mailbox", "trip"];
+const SCREENS = ["welcome", "day", "journey", "mailbox", "trip"];
 function show(name) {
+  if (name === "timeline" || name === "places") { jview = name; name = "journey"; }
   SCREENS.forEach((n) => { $("s-" + n).hidden = n !== name; });
   $("tabbar").hidden = name === "welcome";
   if (name !== "welcome") {
     tab = name;
-    document.querySelectorAll(".tabbar button").forEach((b) => b.dataset.tab === name ? b.setAttribute("aria-current", "page") : b.removeAttribute("aria-current"));
+    document.querySelectorAll(".tabbar button[data-tab]").forEach((b) => b.dataset.tab === name ? b.setAttribute("aria-current", "page") : b.removeAttribute("aria-current"));
   }
   render(); $("s-" + name).scrollTop = 0;
 }
 function goTab(name) {
-  if (name === tab) { if (name === "timeline") jumpToday(); return; }
+  if (name === "timeline" || name === "places") { jview = name; name = "journey"; }
+  if (name === tab) { $("s-" + name).scrollTo({ top: 0, behavior: "smooth" }); render(); return; }
   if (name === "day") { if (tabPushed) { tabPushed = false; expectPop++; history.back(); } show("day"); return; }
   if (!tabPushed) { history.pushState({ t: 1 }, ""); tabPushed = true; }
   show(name);
 }
-document.querySelectorAll(".tabbar button").forEach((b) => b.addEventListener("click", () => goTab(b.dataset.tab)));
+document.querySelectorAll(".tabbar button[data-tab]").forEach((b) => b.addEventListener("click", () => goTab(b.dataset.tab)));
+$("tab-add").addEventListener("click", () => openAddMenu());
 function render() {
-  ({ day: renderDay, timeline: renderTimeline, places: renderPlaces, mailbox: renderMailbox, trip: renderTrip })[tab]?.();
+  ({ day: renderDay, journey: renderJourney, mailbox: renderMailbox, trip: renderTrip })[tab]?.();
 }
 // Shared taps: places, timeline items, postcard tiles, photo thumbnails
 document.addEventListener("click", (e) => {
@@ -619,45 +683,69 @@ const thumbHtml = (id, badge) => `<button class="thumb" data-photo="${id}"><img 
 
 // ================= Day =================
 function renderDay() {
-  $("d-trip").textContent = S.trip.name || "Postcards";
   const n = dayNum(cur), len = tripLen();
   let k = fmtDay(cur, true).split(" ")[0];
   if (inTrip(cur)) k = `Day ${n}` + (len ? ` of ${len}` : "");
   else if (n != null && n < 1) k = "Before the trip"; else if (len && n > len) k = "After the trip";
-  $("d-num").textContent = k; $("d-date").textContent = fmtDay(cur);
+  $("d-num").textContent = k + " · " + fmtDay(cur);
   $("d-today").hidden = cur === iso(new Date());
 
   const d = day(cur);
   if (document.activeElement !== $("d-greet")) $("d-greet").value = d.greet;
-  $("d-greet").placeholder = autoGreet(cur) || "Where are you today?";
-  const tags = [...S.tagLib, ...d.tags.filter((t) => !S.tagLib.includes(t))];
-  $("d-tags").innerHTML = tags.map((t) => `<button class="chip" aria-pressed="${d.tags.includes(t)}" data-t="${esc(t)}">${esc(t)}</button>`).join("") + `<button class="chip add" id="d-newtag">+ Tag</button>`;
-  if (document.activeElement !== $("d-note")) $("d-note").value = d.note;
+  $("d-greet").placeholder = autoGreet(cur) || "Where are you?";
 
+  // Trip progress strip
+  const showProg = inTrip(cur) && len > 1;
+  $("d-prog").hidden = !showProg;
+  if (showProg) {
+    const pct = ((n - 1) / (len - 1)) * 100;
+    $("d-fill").style.width = pct + "%"; $("d-dot").style.left = pct + "%";
+    $("d-pa").textContent = greetFor(S.trip.start) || fmtDay(S.trip.start);
+    const left = len - n;
+    $("d-pb").textContent = left === 0 ? "Last day" : left === 1 ? "1 day to go" : `${left} days to go`;
+  }
+
+  // Photos: a cover tile, a second tile, and an add tile
   const own = new Set(d.photos), photos = dayPhotos(cur);
-  $("d-pcount").textContent = photos.length ? photos.length : "";
-  $("d-photos").dataset.photos = JSON.stringify(photos);
-  $("d-photos").innerHTML = `<button class="thumb add" id="d-addphoto">${icon("camera")}Add</button>` + photos.map((id) => thumbHtml(id, !own.has(id))).join("");
+  const mo = $("d-photos");
+  mo.dataset.photos = JSON.stringify(photos);
+  mo.classList.toggle("empty-m", !photos.length);
+  if (!photos.length) mo.innerHTML = `<button class="thumb add" id="d-addphoto">${icon("camera")}Add photos of today</button>`;
+  else {
+    const big = `<button class="thumb big" data-photo="${photos[0]}"><img data-k="p:${photos[0]}" alt="Cover photo"><span class="cover-tag">Cover</span>${!own.has(photos[0]) ? `<span class="badge" style="left:auto;right:6px">${icon("pin")}</span>` : ""}</button>`;
+    const second = photos[1] ? `<button class="thumb" data-photo="${photos[1]}"><img data-k="t:${photos[1]}" alt="">${photos.length > 2 ? `<span class="more">+${photos.length - 2}</span>` : ""}</button>` : "";
+    mo.innerHTML = big + second + `<button class="thumb add${photos[1] ? "" : " tall"}" id="d-addphoto">${icon("camera")}Add</button>`;
+  }
 
+  // Postcard button
   const cards = cardsOn(cur);
   $("d-cards").hidden = !cards.length;
   $("d-cards").innerHTML = cards.map(cardTile).join("");
-  $("d-make").lastChild.textContent = cards.length ? "Make another postcard" : "Make a postcard of this day";
+  const isToday = cur === iso(new Date());
+  $("d-make-t").textContent = cards.length ? "Make another postcard" : isToday ? "Make today's postcard" : "Make a postcard of this day";
+  $("d-make-s").textContent = photos.length && d.note ? "Cover photo and note are ready"
+    : photos.length ? "Photo ready. Add a note for the message" : d.note ? "Note ready. Add a photo for the front" : "Add a photo and a note, or go without";
 
+  const tags = [...S.tagLib, ...d.tags.filter((t) => !S.tagLib.includes(t))];
+  $("d-tags").innerHTML = tags.map((t) => `<button class="chip" aria-pressed="${d.tags.includes(t)}" data-t="${esc(t)}">${esc(t)}</button>`).join("") + `<button class="chip add" id="d-newtag" aria-label="New tag">+ Tag</button>`;
+  if (document.activeElement !== $("d-note")) $("d-note").value = d.note;
+
+  // The day's stops, as a route down the time of day
   const list = placesOn(cur);
-  $("d-count").textContent = list.length ? list.length + (list.length === 1 ? " place" : " places") : "";
-  if (!list.length) $("d-places").innerHTML = `<div class="empty">No places yet for this day.<br>Tap <b>Add place</b>, or share one from Google Maps.</div>`;
-  else $("d-places").innerHTML = SLOTS.map(([k, label]) => [label, list.filter((p) => p.slot === k)]).filter(([, a]) => a.length)
-    .map(([label, arr]) => `<div class="slot-group"><div class="slot-label eyebrow">${label}</div>${arr.map((p) => placeRow(p)).join("")}</div>`).join("");
+  if (!list.length) { $("d-places").className = ""; $("d-places").innerHTML = `<div class="empty">No stops yet. Tap <b>+</b>, or in Google Maps tap <b>Share</b> and choose Postcards.</div>`; }
+  else {
+    $("d-places").className = "stops";
+    $("d-places").innerHTML = list.map((p, i) => `<div class="stop-k${i === list.length - 1 ? " last" : ""}">${SLOT_LABEL[p.slot] || ""}${p.time ? "<br>" + fmtTime(p.time) : ""}</div><div class="stop-c ${p.slot}">${placeRow(p)}</div>`).join("");
+  }
   hydrate($("s-day"));
 }
 function placeRow(p, showDate) {
-  const meta = [p.cat, showDate ? fmtDay(p.date) + " · " + SLOT_LABEL[p.slot] : "", p.time ? fmtTime(p.time) : ""].filter(Boolean).join(" · ");
-  const pin = p.photos.length ? `<span class="pin"><img data-k="t:${p.photos[0]}" alt=""></span>` : `<span class="pin">${icon("pin")}</span>`;
-  return `<button class="place" data-id="${p.id}">${pin}<span class="body"><span class="nm">${esc(p.name || "Unnamed place")}</span>${meta ? `<span class="meta mono">${esc(meta)}</span>` : ""}${p.notes ? `<span class="nt">${esc(p.notes)}</span>` : ""}</span></button>`;
+  const meta = [p.cat, showDate ? fmtDay(p.date) + " · " + SLOT_LABEL[p.slot] : "", showDate && p.time ? fmtTime(p.time) : ""].filter(Boolean).join(" · ");
+  const pin = p.photos.length ? `<span class="pin"><img data-k="t:${p.photos[0]}" alt=""></span>` : "";
+  return `<button class="place" data-id="${p.id}">${pin}<span class="body"><span class="nm">${esc(p.name || "Unnamed place")}</span>${meta ? `<span class="meta">${esc(meta)}</span>` : ""}${p.notes ? `<span class="nt">${esc(p.notes)}</span>` : ""}</span></button>`;
 }
 function cardTile(c) {
-  return `<button class="mail" data-card="${c.id}"><span class="mail-img"><img data-k="c:${c.id}" alt=""></span><span class="mail-cap"><b>${esc(c.greet || "Postcard")}</b><span class="mono">${fmtDay(c.date)}${c.to ? " · to " + esc(c.to) : ""}</span></span></button>`;
+  return `<button class="mail" data-card="${c.id}"><span class="mail-img"><img data-k="c:${c.id}" alt=""></span><span class="mail-cap"><b>${esc(c.greet || "Postcard")}</b><span>${inTrip(c.date) ? "Day " + dayNum(c.date) + " · " : ""}${fmtDay(c.date)}${c.to ? " · to " + esc(c.to) : ""}</span></span></button>`;
 }
 $("d-tags").addEventListener("click", (e) => {
   const b = e.target.closest("button"); if (!b) return;
@@ -682,34 +770,40 @@ $("d-photos").addEventListener("click", async (e) => {
 });
 
 // ================= Timeline =================
+function renderJourney() {
+  $("j-sub").textContent = [S.trip.name, S.trip.start ? fmtDay(S.trip.start).replace(/^\w+,?\s/, "") + (S.trip.end ? " – " + fmtDay(S.trip.end).replace(/^\w+,?\s/, "") : "") : ""].filter(Boolean).join(" · ");
+  $("j-seg").querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", b.dataset.v === jview));
+  $("tl").hidden = jview !== "timeline"; $("j-places").hidden = jview !== "places";
+  jview === "timeline" ? renderTimeline() : renderPlaces();
+}
+$("j-seg").addEventListener("click", (e) => { const b = e.target.closest("button"); if (b && b.dataset.v !== jview) { jview = b.dataset.v; renderJourney(); } });
+// Newest day first, so today is always at the top
 function renderTimeline() {
   const dates = new Set(S.places.map((p) => p.date));
   Object.keys(S.days).forEach((k) => { const d = day(k); if (d.tags.length || d.note || d.photos.length || d.greet) dates.add(k); });
   S.cards.forEach((c) => dates.add(c.date));
   const today = iso(new Date());
   if (S.trip.start) { const last = S.trip.end && S.trip.end < today ? S.trip.end : today; for (let s = S.trip.start; s <= last; s = addDays(s, 1)) dates.add(s); }
-  const sorted = [...dates].sort();
+  const sorted = [...dates].sort().reverse();
   if (!sorted.length) { $("tl").innerHTML = `<div class="empty">Your trip will build up here, one day at a time.</div>`; return; }
   $("tl").innerHTML = sorted.map((s) => {
     const d = day(s), ps = placesOn(s), photos = dayPhotos(s), cards = cardsOn(s), n = dayNum(s), g = greetFor(s);
     const isEmpty = !ps.length && !d.tags.length && !d.note && !photos.length && !cards.length;
-    const shown = photos.slice(0, 4);
+    const shown = photos.slice(0, photos.length > 4 ? 3 : 4), dt = parseIso(s);
     return `<div class="tl-day${isEmpty ? " empty-day" : ""}${s === today ? " is-today" : ""}" id="tl-${s}">
-      <span class="tl-dot"></span>
-      <button class="tl-hd" data-date="${s}"><b>${fmtDay(s)}</b>${inTrip(s) ? `<span class="eyebrow mono">Day ${n}</span>` : ""}</button>
-      ${g && !isEmpty ? `<div class="tl-greet">Greetings from ${esc(g)}</div>` : ""}
-      ${d.tags.length || cards.length ? `<div class="tl-tags">${cards.map((c) => `<button class="tag" data-card="${c.id}">${icon("mail")}Postcard</button>`).join("")}${d.tags.map((t) => `<span class="tag">${esc(t)}</span>`).join("")}</div>` : ""}
-      ${d.note ? `<p class="tl-note">${esc(d.note)}</p>` : ""}
-      ${shown.length ? `<div class="tl-photos" data-photos='${esc(JSON.stringify(photos))}'>${shown.map((id) => thumbHtml(id)).join("")}${photos.length > 4 ? `<span class="more">+${photos.length - 4}</span>` : ""}</div>` : ""}
-      ${ps.length ? `<div class="tl-items">${ps.map((p) => `<button class="tl-item" data-id="${p.id}"><span class="s">${p.time ? fmtTime(p.time) : SLOT_LABEL[p.slot]}</span><span class="n">${esc(p.name || "Unnamed place")}</span></button>`).join("")}</div>`
-        : isEmpty ? `<p class="tl-note">Nothing logged</p>` : ""}
+      <button class="tl-date" data-date="${s}" aria-label="Open ${fmtDay(s, true)}"><span class="n">${inTrip(s) ? String(n).padStart(2, "0") : dt.getDate()}</span><span class="w">${dt.toLocaleDateString("en-AU", { weekday: "short" })} ${dt.getDate()}</span><span class="rail"></span></button>
+      <div class="tl-card">
+        <button class="tl-hd" data-date="${s}"><b>${esc(isEmpty ? "Nothing logged" : g || fmtDay(s, true))}</b>${s === today ? `<span class="tl-badge">Today</span>` : ""}</button>
+        ${d.note ? `<p class="tl-note">${esc(d.note)}</p>` : ""}
+        ${shown.length ? `<div class="tl-photos" data-photos='${esc(JSON.stringify(photos))}'>${shown.map((id) => thumbHtml(id)).join("")}${photos.length > 4 ? `<span class="more">+${photos.length - 3}</span>` : ""}</div>` : ""}
+        ${d.tags.length || cards.length ? `<div class="tl-tags">${cards.map((c) => `<button class="tag" data-card="${c.id}">${icon("mail")}Postcard</button>`).join("")}${d.tags.map((t) => `<span class="tag">${esc(t)}</span>`).join("")}</div>` : ""}
+        ${ps.length ? `<div class="tl-items">${ps.map((p) => `<button class="tl-item" data-id="${p.id}"><span class="s">${p.time ? fmtTime(p.time) : SLOT_LABEL[p.slot]}</span><span class="n">${esc(p.name || "Unnamed place")}</span></button>`).join("")}</div>` : ""}
+      </div>
     </div>`;
   }).join("");
   hydrate($("tl"));
 }
-$("tl").addEventListener("click", (e) => { const b = e.target.closest(".tl-hd"); if (b) { cur = b.dataset.date; goTab("day"); } });
-function jumpToday() { const el = $("tl-" + iso(new Date())); if (el) el.scrollIntoView({ block: "center", behavior: "smooth" }); }
-$("t-jump").addEventListener("click", jumpToday);
+$("tl").addEventListener("click", (e) => { const b = e.target.closest(".tl-hd, .tl-date"); if (b) { cur = b.dataset.date; goTab("day"); } });
 
 // ================= Places =================
 function renderPlaces() {
@@ -717,7 +811,7 @@ function renderPlaces() {
   $("p-cats").innerHTML = ["All", ...used].map((c) => `<button class="chip" aria-pressed="${c === catFilter}" data-c="${c}">${c}</button>`).join("");
   const q = $("p-search").value.trim().toLowerCase();
   const list = S.places.filter((p) => (catFilter === "All" || p.cat === catFilter) && (!q || [p.name, p.address, p.notes].join(" ").toLowerCase().includes(q))).sort(sortPlaces);
-  $("p-count").textContent = S.places.length ? `${list.length} of ${S.places.length}` : "";
+  $("p-count").textContent = S.places.length ? `${list.length} of ${S.places.length} places` : "";
   $("p-list").innerHTML = list.length ? list.map((p) => placeRow(p, true)).join("") : `<div class="empty">${S.places.length ? "No matches." : "Places you save show up here as one list."}</div>`;
   hydrate($("p-list"));
 }
@@ -729,21 +823,62 @@ function renderMailbox() {
   const list = S.cards.slice().sort((a, b) => b.date.localeCompare(a.date) || b.created - a.created);
   $("m-count").textContent = list.length ? list.length + (list.length === 1 ? " postcard" : " postcards") : "";
   $("m-grid").style.display = list.length ? "" : "block";
-  $("m-grid").innerHTML = list.length ? list.map(cardTile).join("") : `<div class="empty">No postcards yet.<br>Open a day and tap <b>Make a postcard</b>.</div>`;
+  $("m-grid").innerHTML = list.length ? list.map(cardTile).join("") : `<div class="empty">No postcards yet.<br>Open a day and tap <b>Make today's postcard</b>.</div>`;
   hydrate($("m-grid"));
 }
 
 // ================= Trip =================
-async function renderTrip() {
-  $("x-name").value = S.trip.name; $("x-start").value = S.trip.start; $("x-end").value = S.trip.end;
-  $("x-tags").innerHTML = S.tagLib.map((t, i) => `<span class="chip tag-edit">${esc(t)}<button data-i="${i}" aria-label="Remove ${esc(t)}">${icon("x")}</button></span>`).join("") || `<span class="muted">No tags.</span>`;
-  const logged = new Set([...S.places.map((p) => p.date), ...Object.keys(S.days).filter((k) => { const d = day(k); return d.tags.length || d.note || d.photos.length; })]).size;
-  const nPhotos = Object.values(S.days).reduce((a, d) => a + (d.photos || []).length, 0) + S.places.reduce((a, p) => a + p.photos.length, 0);
-  let html = `${S.places.length} places<br>${nPhotos} photos<br>${S.cards.length} postcards<br>${logged} days logged` + (tripLen() ? ` of ${tripLen()}` : "");
-  $("x-stats").innerHTML = html;
-  try { const est = await navigator.storage.estimate(); if (est.usage != null) $("x-stats").innerHTML = html + `<br>${(est.usage / 1048576).toFixed(1)} MB used on this phone`; } catch {}
+// One stamp per place you've been greeted from, in the order you got there
+function stampList() {
+  const seen = new Map(), today = iso(new Date());
+  const dates = new Set([...S.places.map((p) => p.date), ...Object.keys(S.days), ...S.cards.map((c) => c.date)]);
+  [...dates].sort().forEach((s) => {
+    if (s > today) return;
+    const d = day(s); if (!placesOn(s).length && !d.greet && !d.photos.length && !cardsOn(s).length) return;
+    const g = greetFor(s); if (!g) return;
+    const k = g.trim().toLowerCase(); if (!seen.has(k)) seen.set(k, { name: g.trim(), date: s });
+  });
+  return [...seen.values()];
 }
-["name", "start", "end"].forEach((k) => $("x-" + k).addEventListener("change", (e) => { S.trip[k] = e.target.value; save(); }));
+const STAMP_INKS = ["#B0502A", "#7A4A30", "#C0812C", "#5A3420", "#8C3B1C", "#9A6A2E"];
+async function renderTrip() {
+  $("x-title").textContent = S.trip.name || "Trip";
+  const len = tripLen();
+  $("x-dates").textContent = S.trip.start ? fmtDay(S.trip.start).replace(/^\w+,?\s/, "") + (S.trip.end ? " – " + fmtDay(S.trip.end).replace(/^\w+,?\s/, "") : "") + (len ? ` · ${len} days` : "") : "Add your dates";
+  const n = dayNum(iso(new Date()));
+  const daysIn = n == null ? 0 : Math.max(0, len ? Math.min(n, len) : n);
+  const nPhotos = Object.values(S.days).reduce((a, d) => a + (d.photos || []).length, 0) + S.places.reduce((a, p) => a + p.photos.length, 0);
+  $("x-stats").innerHTML = [[daysIn, "Days in"], [S.places.length, "Places"], [nPhotos, "Photos"], [S.cards.length, "Postcards"]].map(([v, l]) => `<div><b>${v}</b><span>${l}</span></div>`).join("");
+
+  const st = stampList();
+  $("x-scount").textContent = st.length ? st.length + (st.length === 1 ? " stamp" : " stamps") : "";
+  $("x-stamps").innerHTML = st.map((x, i) => `<div class="stamp"><div class="in" style="background:${STAMP_INKS[i % STAMP_INKS.length]}"><span class="nm">${esc(x.name.toUpperCase())}</span><span class="d">${inTrip(x.date) ? "Day " + dayNum(x.date) : fmtDay(x.date)}</span></div></div>`).join("")
+    + `<div class="stamp next"><div class="in"><span class="nm">NEXT STOP</span><span class="d">Keep going</span></div></div>`;
+
+  const since = S.lastBackup ? Math.floor((Date.now() - S.lastBackup) / 86400000) : null;
+  $("x-btitle").textContent = since == null ? "No backup yet" : since === 0 ? "Backed up today" : since === 1 ? "Last backup yesterday" : `Last backup ${since} days ago`;
+  $("x-backup").classList.toggle("ok", since != null && since < 3);
+
+  $("x-quick").setAttribute("aria-pressed", !!S.quickSave);
+  $("x-tags").innerHTML = S.tagLib.map((t, i) => `<span class="chip tag-edit">${esc(t)}<button data-i="${i}" aria-label="Remove ${esc(t)}">${icon("x")}</button></span>`).join("") || `<span class="muted">No tags.</span>`;
+  try { const est = await navigator.storage.estimate(); if (est.usage != null) $("x-storage").textContent = (est.usage / 1048576).toFixed(0) + " MB"; } catch {}
+}
+$("x-quick").addEventListener("click", () => { S.quickSave = !S.quickSave; save(); $("x-quick").setAttribute("aria-pressed", S.quickSave); });
+$("x-edittrip").addEventListener("click", () => {
+  openSheet(`${head("Edit trip")}
+    <div><label class="lbl" for="e-name">Trip name</label><input class="field" id="e-name" value="${esc(S.trip.name)}" autocomplete="off"></div>
+    <div class="two">
+      <div><label class="lbl" for="e-start">First day</label><input class="field mono" id="e-start" type="date" value="${S.trip.start}"></div>
+      <div><label class="lbl" for="e-end">Last day</label><input class="field mono" id="e-end" type="date" value="${S.trip.end}"></div>
+    </div>
+    <button class="btn-primary" id="e-save">Save</button>`, () => {
+    $("e-save").addEventListener("click", () => {
+      const start = $("e-start").value, end = $("e-end").value;
+      if (start && end && end < start) return toast("The last day is before the first");
+      S.trip = { name: $("e-name").value.trim() || "Our trip", start, end }; save(); closeSheet(); render();
+    });
+  });
+});
 $("x-tags").addEventListener("click", (e) => { const b = e.target.closest("button[data-i]"); if (!b) return; S.tagLib.splice(+b.dataset.i, 1); save(); renderTrip(); });
 function addTag(t) { t = (t || "").trim(); if (t && !S.tagLib.some((x) => x.toLowerCase() === t.toLowerCase())) { S.tagLib.push(t); save(); } return t; }
 $("x-addtag").addEventListener("click", () => { addTag($("x-newtag").value); $("x-newtag").value = ""; renderTrip(); });
@@ -789,6 +924,7 @@ $("x-export").addEventListener("click", async () => {
     const entries = [{ name: "data.json", blob: new Blob([JSON.stringify(S, null, 2)], { type: "application/json" }) }];
     for (const k of await idb.keys()) { const b = await idb.get(k); if (b) entries.push({ name: k.replace(":", "/") + ".jpg", blob: b }); }
     download(await makeZip(entries), `postcards-${(S.trip.name || "trip").replace(/\W+/g, "-").toLowerCase()}-${iso(new Date())}.zip`);
+    S.lastBackup = Date.now(); save(); if (tab === "trip") renderTrip();
     toast(`Backup saved: ${entries.length - 1} images`);
   } catch { toast("Couldn't make the backup"); }
 });
@@ -944,6 +1080,43 @@ function openTagSheet() {
   });
 }
 
+// The raised + in the tab bar
+function openAddMenu() {
+  const date = tab === "day" ? cur : iso(new Date()), isToday = date === iso(new Date());
+  const when = isToday ? "today" : fmtDay(date);
+  openSheet(`${head("Add to " + esc(when))}
+    <div class="add-menu">
+      <button id="am-place"><span class="ic">${icon("pin")}</span><span><b>Add a place</b><span class="s">Paste a Google Maps link or type one in</span></span></button>
+      <button id="am-photo"><span class="ic">${icon("camera")}</span><span><b>Add photos</b><span class="s">From your camera or gallery</span></span></button>
+      <button id="am-card"><span class="ic">${icon("card")}</span><span><b>Make a postcard</b><span class="s">From ${esc(when)}'s photos and note</span></span></button>
+    </div>
+    <p class="hint">Quicker: in Google Maps, tap Share on a place and choose Postcards.</p>`, () => {
+    $("am-place").addEventListener("click", () => openPlaceSheet({ date }));
+    $("am-photo").addEventListener("click", async () => {
+      closeSheet();
+      const ids = await pickPhotos(); if (!ids.length) return;
+      setDay(date, { photos: [...day(date).photos, ...ids] }); render();
+      toast(ids.length > 1 ? `${ids.length} photos added` : "Photo added");
+    });
+    $("am-card").addEventListener("click", () => openComposer({ date }, true));
+  });
+}
+
+// Shared from Google Maps: save straight to today, then offer Edit and Undo
+function quickSave(shared) {
+  const date = iso(new Date());
+  const dupe = S.places.find((p) => p.date === date && ((shared.url && p.url === shared.url) || p.name === shared.name) && Date.now() - (p.created || 0) < 10 * 60000);
+  cur = date;
+  if (dupe) { if (tab !== "day") show("day"); else renderDay(); return toast(`${dupe.name} is already saved`, "Edit", () => openPlaceSheet(dupe)); }
+  const rec = { id: uid(), created: Date.now(), name: shared.name, address: shared.address || "", url: shared.url || "", lat: shared.lat, lng: shared.lng,
+    date, slot: slotForNow(), time: "", cat: "", notes: "", photos: [] };
+  S.places.push(rec); save();
+  if (tab !== "day") show("day"); else renderDay();
+  toast(`Saved ${rec.name} to ${SLOT_LABEL[rec.slot]}`, "Edit", () => openPlaceSheet(rec), "Undo", () => {
+    const i = S.places.indexOf(rec); if (i >= 0) { S.places.splice(i, 1); save(); render(); }
+  });
+}
+
 // ================= Photo viewer =================
 function photoOwner(id) {
   for (const [k, d] of Object.entries(S.days)) if ((d.photos || []).includes(id)) return { kind: "day", key: k, label: fmtDay(k) };
@@ -974,9 +1147,10 @@ function openLightbox(ids, i) {
 }
 
 // ================= Postcard rendering =================
-const CW = 1800, CH = 1200, PAPER = "#FCF8EE", INK = "#22345A", PRINT = "#5B6862";
+const CW = 1800, CH = 1200, PAPER = "#FBF5EA", INK = "#3A281C", PRINT = "#6A5242", ACCENT = "#B0502A", OCHRE = "#D99A3E", ESPRESSO = "#2A1C13";
+const SLAB = '"Alfa Slab One"', HANKEN = '"Hanken Grotesk"', MONO = '"Overpass Mono"';
 let fontsP;
-const fontsReady = () => fontsP ||= Promise.all(['800 100px Overpass', '700 100px Overpass', '500 60px Caveat', '700 60px Caveat', '600 30px "Overpass Mono"'].map((f) => document.fonts.load(f))).catch(() => {});
+const fontsReady = () => fontsP ||= Promise.all([`400 100px ${SLAB}`, `700 60px ${HANKEN}`, '500 60px Caveat', '700 60px Caveat', `600 30px ${MONO}`].map((f) => document.fonts.load(f))).catch(() => {});
 const imgCache = new Map();
 function photoImage(id) {
   if (!imgCache.has(id)) {
@@ -988,11 +1162,13 @@ function photoImage(id) {
 function specFrom(c) {
   const d = parseIso(c.date), n = dayNum(c.date), valid = inTrip(c.date);
   return {
+    style: c.style || "letter",
     photoId: c.photoId, greet: (c.greet || "").trim(), msg: (c.msg || "").trim() || DEFAULT_MSG, to: (c.to || "").trim(), showStops: c.showStops,
     stops: placesOn(c.date).map((p) => `${p.time ? fmtTime(p.time) : SLOT_LABEL[p.slot]} · ${p.name}`),
     stampTop: valid ? "DAY" : d.toLocaleDateString("en-US", { month: "short" }).toUpperCase(), stampNum: String(valid ? n : d.getDate()),
     trip: S.trip.name || "Postcards",
     caption: ((valid ? `Day ${n} · ` : "") + d.toLocaleDateString("en-AU", { weekday: "short", day: "numeric", month: "short", year: "numeric" })).toUpperCase(),
+    short: d.toLocaleDateString("en-AU", { day: "numeric", month: "short", year: "numeric" }),
     pmDate: d.toLocaleDateString("en-US", { month: "short", day: "numeric" }).toUpperCase(), pmYear: String(d.getFullYear()),
     footer: (valid ? `${S.trip.name || "Our trip"} · Day ${n}${tripLen() ? " of " + tripLen() : ""}` : d.toLocaleDateString("en-AU", { weekday: "long", day: "numeric", month: "long", year: "numeric" })).toUpperCase()
   };
@@ -1019,63 +1195,116 @@ function spaced(x, t, px, py, font, color, sp, align) {
   let cx = align === "center" ? px - total / 2 : align === "right" ? px - total : px;
   [...t].forEach((ch, i) => { x.fillText(ch, cx, py); cx += ws[i] + sp; });
 }
+const spacedWidth = (x, t, font, sp) => { x.font = font; return [...t].reduce((a, ch) => a + x.measureText(ch).width, 0) + sp * (t.length - 1); };
 function cover(x, img, dx, dy, dw, dh) {
   const s = Math.max(dw / img.naturalWidth, dh / img.naturalHeight), sw = dw / s, sh = dh / s;
   const sx = (img.naturalWidth - sw) / 2, sy = (img.naturalHeight - sh) * 0.42;
   x.drawImage(img, sx, sy, sw, sh, dx, dy, dw, dh);
 }
+// No photo picked: a flat desert scene in the palette instead
+function drawScene(x, dx, dy, dw, dh) {
+  x.save(); x.beginPath(); x.rect(dx, dy, dw, dh); x.clip();
+  const sx = dw / 120, sy = dh / 80, P = (pts, fill) => { x.beginPath(); pts.forEach(([a, b], i) => i ? x.lineTo(dx + a * sx, dy + b * sy) : x.moveTo(dx + a * sx, dy + b * sy)); x.closePath(); x.fillStyle = fill; x.fill(); };
+  x.fillStyle = "#EBB98A"; x.fillRect(dx, dy, dw, dh);
+  x.fillStyle = "#F6DDB2"; x.beginPath(); x.arc(dx + 86 * sx, dy + 24 * sy, 9 * Math.min(sx, sy), 0, Math.PI * 2); x.fill();
+  P([[0, 52], [18, 34], [30, 42], [46, 22], [60, 38], [74, 30], [92, 44], [120, 32], [120, 80], [0, 80]], "#B97A55");
+  P([[0, 60], [8, 44], [14, 34], [22, 30], [34, 28], [46, 28], [56, 34], [60, 46], [62, 60], [120, 58], [120, 80], [0, 80]], "#7A4A30");
+  P([[0, 70], [10, 62], [16, 68], [24, 58], [32, 68], [40, 60], [48, 70], [120, 66], [120, 80], [0, 80]], "#3B2619");
+  x.restore();
+}
+function drawPhoto(x, img, dx, dy, dw, dh) { if (img) cover(x, img, dx, dy, dw, dh); else drawScene(x, dx, dy, dw, dh); }
+// Fit one or two lines of text inside maxW, largest size first
+function fitLines(x, text, font, maxW, maxSize, minSize, twoLineSize) {
+  const fits = (ls, sz) => { x.font = font(sz); return Math.max(...ls.map((l) => x.measureText(l).width)) <= maxW; };
+  let lines = [text], size = maxSize;
+  while (size > minSize && !fits(lines, size)) size -= 6;
+  if (!fits(lines, size) && text.includes(" ")) {
+    const w = text.split(" "); let best = null; x.font = font(100);
+    for (let i = 1; i < w.length; i++) { const a = w.slice(0, i).join(" "), c = w.slice(i).join(" "), m = Math.max(x.measureText(a).width, x.measureText(c).width); if (!best || m < best.m) best = { m, ls: [a, c] }; }
+    lines = best.ls; size = twoLineSize;
+  }
+  while (size > 40 && !fits(lines, size)) size -= 4;
+  return { lines, size };
+}
+
 async function drawFront(x, s) {
-  x.fillStyle = "#FBF6EA"; x.fillRect(0, 0, CW, CH);
+  const img = s.photoId ? await photoImage(s.photoId) : null;
+  if (s.style === "poster") return drawPoster(x, s, img);
+  if (s.style === "linen") return drawLinen(x, s, img);
+  // Large letter: photo with big slab lettering
+  x.fillStyle = PAPER; x.fillRect(0, 0, CW, CH);
   const b = 40, pw = CW - 2 * b, ph = CH - 2 * b;
   x.save(); x.beginPath(); x.rect(b, b, pw, ph); x.clip();
-  const img = s.photoId ? await photoImage(s.photoId) : null;
-  if (img) cover(x, img, b, b, pw, ph);
-  else {
-    const g = x.createLinearGradient(0, 0, CW, CH); g.addColorStop(0, "#23805A"); g.addColorStop(1, "#0E3B28"); x.fillStyle = g; x.fillRect(b, b, pw, ph);
-    x.fillStyle = "rgba(255,255,255,.06)"; const cx = CW / 2, cy = CH * 1.15;
-    for (let i = 0; i < 36; i += 2) { const a0 = Math.PI + i * Math.PI / 36; x.beginPath(); x.moveTo(cx, cy); x.arc(cx, cy, 2600, a0, a0 + Math.PI / 36); x.closePath(); x.fill(); }
-  }
-  let g = x.createLinearGradient(0, CH * 0.3, 0, CH); g.addColorStop(0, "rgba(8,18,13,0)"); g.addColorStop(1, "rgba(8,18,13,.66)"); x.fillStyle = g; x.fillRect(b, b, pw, ph);
-  g = x.createLinearGradient(0, b, 0, b + 240); g.addColorStop(0, "rgba(8,18,13,.38)"); g.addColorStop(1, "rgba(8,18,13,0)"); x.fillStyle = g; x.fillRect(b, b, pw, 240);
+  drawPhoto(x, img, b, b, pw, ph);
+  let g = x.createLinearGradient(0, CH * 0.35, 0, CH); g.addColorStop(0, "rgba(42,28,19,0)"); g.addColorStop(1, "rgba(42,28,19,.62)"); x.fillStyle = g; x.fillRect(b, b, pw, ph);
+  g = x.createLinearGradient(0, b, 0, b + 240); g.addColorStop(0, "rgba(42,28,19,.4)"); g.addColorStop(1, "rgba(42,28,19,0)"); x.fillStyle = g; x.fillRect(b, b, pw, 240);
   x.restore();
   x.shadowColor = "rgba(0,0,0,.4)"; x.shadowBlur = 10;
-  spaced(x, s.caption, CW - b - 54, b + 76, '600 32px "Overpass Mono"', "rgba(255,250,238,.95)", 3, "right");
+  spaced(x, s.caption, CW - b - 54, b + 76, `600 32px ${MONO}`, "rgba(255,248,236,.95)", 3, "right");
   x.shadowColor = "transparent"; x.shadowBlur = 0;
 
-  // Big block letters, sized to fit, split over two lines if needed
-  const name = (s.greet || "Somewhere nice").toUpperCase(), maxW = pw - 170;
-  const fits = (ls, sz) => { x.font = `800 ${sz}px Overpass`; return Math.max(...ls.map((l) => x.measureText(l).width)) <= maxW; };
-  let lines = [name], size = 300;
-  while (size > 170 && !fits(lines, size)) size -= 6;
-  if (!fits(lines, size) && name.includes(" ")) {
-    const w = name.split(" "); let best = null; x.font = "800 100px Overpass";
-    for (let i = 1; i < w.length; i++) { const a = w.slice(0, i).join(" "), c = w.slice(i).join(" "), m = Math.max(x.measureText(a).width, x.measureText(c).width); if (!best || m < best.m) best = { m, ls: [a, c] }; }
-    lines = best.ls; size = 260;
-  }
-  while (size > 50 && !fits(lines, size)) size -= 4;
-  const lh = size * 0.9, left = b + 84, base = CH - b - 84 - (lines.length - 1) * lh;
-  const scr = Math.round(Math.max(84, Math.min(140, size * 0.52)));
-  x.font = `700 ${scr}px Caveat`; x.textAlign = "left"; x.fillStyle = "#FFF6DF";
+  const { lines, size } = fitLines(x, (s.greet || "Somewhere nice").toUpperCase(), (sz) => `400 ${sz}px ${SLAB}`, pw - 190, 260, 150, 220);
+  const lh = size * 0.98, left = b + 84, base = CH - b - 90 - (lines.length - 1) * lh;
+  const scr = Math.round(Math.max(84, Math.min(140, size * 0.58)));
+  x.save(); x.translate(left + 6, base - size * 0.8 - 26); x.rotate(-0.05);
+  x.font = `700 ${scr}px Caveat`; x.textAlign = "left"; x.fillStyle = "#FFF3DC";
   x.shadowColor = "rgba(0,0,0,.5)"; x.shadowBlur = 16; x.shadowOffsetY = 4;
-  x.fillText("Greetings from", left + 6, base - size * 0.74 - 24);
-  x.shadowColor = "transparent"; x.shadowBlur = 0; x.shadowOffsetY = 0;
-  x.font = `800 ${size}px Overpass`; x.lineJoin = "round";
+  x.fillText("Greetings from", 0, 0); x.restore();
+  x.font = `400 ${size}px ${SLAB}`; x.lineJoin = "round"; x.textAlign = "left";
   lines.forEach((l, i) => {
-    const y = base + i * lh, depth = Math.max(6, size * 0.055);
-    x.fillStyle = "#0B2E1F"; for (let k = depth; k > 0; k -= 1.5) x.fillText(l, left + k, y + k);
-    x.strokeStyle = "#0B2E1F"; x.lineWidth = Math.max(8, size * 0.065); x.strokeText(l, left, y);
-    const fg = x.createLinearGradient(0, y - size * 0.72, 0, y); fg.addColorStop(0, "#FFF9EA"); fg.addColorStop(1, "#F2D59C");
+    const y = base + i * lh, depth = Math.max(8, size * 0.07);
+    x.fillStyle = ESPRESSO; for (let k = depth; k > depth * 0.5; k -= 1.5) x.fillText(l, left + k, y + k);
+    x.fillStyle = ACCENT; for (let k = depth * 0.5; k > 0; k -= 1.5) x.fillText(l, left + k, y + k);
+    x.strokeStyle = ESPRESSO; x.lineWidth = Math.max(6, size * 0.045); x.strokeText(l, left, y);
+    const fg = x.createLinearGradient(0, y - size * 0.75, 0, y); fg.addColorStop(0, "#FFF6E2"); fg.addColorStop(1, "#F2C27A");
     x.fillStyle = fg; x.fillText(l, left, y);
   });
 }
+// Park poster: espresso frame, ochre slab title, warm-toned photo, mono footer
+function drawPoster(x, s, img) {
+  x.fillStyle = ESPRESSO; x.fillRect(0, 0, CW, CH);
+  const m = 44, top = 270, bot = CH - 190;
+  const name = (s.greet || "Somewhere nice").toUpperCase();
+  let size = 190, sp = 22;
+  while (size > 60 && spacedWidth(x, name, `400 ${size}px ${SLAB}`, sp) > CW - 2 * m - 120) { size -= 4; sp = Math.max(6, size * 0.12); }
+  spaced(x, name, CW / 2, m + (top - m) / 2 + size * 0.36, `400 ${size}px ${SLAB}`, OCHRE, sp, "center");
+  x.save(); x.beginPath(); x.rect(m, top, CW - 2 * m, bot - top); x.clip();
+  drawPhoto(x, img, m, top, CW - 2 * m, bot - top);
+  if (img) { x.globalCompositeOperation = "multiply"; x.fillStyle = "rgba(226,160,90,.38)"; x.fillRect(m, top, CW - 2 * m, bot - top); x.globalCompositeOperation = "source-over"; }
+  x.restore();
+  x.strokeStyle = OCHRE; x.lineWidth = 4; x.strokeRect(m - 14, m - 14, CW - 2 * m + 28, CH - 2 * m + 28);
+  x.fillStyle = OCHRE; x.fillRect(m, top - 4, CW - 2 * m, 4); x.fillRect(m, bot, CW - 2 * m, 4);
+  spaced(x, s.caption, CW / 2, bot + 82, `600 40px ${MONO}`, "#F1E6D3", 8, "center");
+  spaced(x, s.trip.toUpperCase(), CW / 2, bot + 134, `600 26px ${MONO}`, OCHRE, 6, "center");
+}
+// Linen: textured card, white-bordered photo, handwritten caption
+function drawLinen(x, s, img) {
+  x.fillStyle = "#F2E6CF"; x.fillRect(0, 0, CW, CH);
+  x.fillStyle = "rgba(122,74,48,.07)";
+  for (let i = 0; i < CW; i += 5) x.fillRect(i, 0, 1.5, CH);
+  for (let j = 0; j < CH; j += 5) x.fillRect(0, j, CW, 1.5);
+  let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+  for (let i = 0; i < 1800; i++) { x.fillStyle = `rgba(110,80,50,${0.03 + rnd() * 0.05})`; x.fillRect(rnd() * CW, rnd() * CH, 1 + rnd() * 2, 1 + rnd() * 2); }
+  const px = 90, py = 90, pw = CW - 180, ph = CH - 330;
+  x.shadowColor = "rgba(42,28,19,.25)"; x.shadowBlur = 18; x.shadowOffsetY = 6;
+  x.fillStyle = "#FFFDF7"; x.fillRect(px - 14, py - 14, pw + 28, ph + 28);
+  x.shadowColor = "transparent"; x.shadowBlur = 0; x.shadowOffsetY = 0;
+  x.save(); x.beginPath(); x.rect(px, py, pw, ph); x.clip(); drawPhoto(x, img, px, py, pw, ph); x.restore();
+  x.textAlign = "left"; x.fillStyle = "#5A3420";
+  let fs = 120; const cap = s.greet ? `Greetings from ${s.greet}` : "Greetings!";
+  x.font = `700 ${fs}px Caveat`; while (fs > 60 && x.measureText(cap).width > pw - 460) { fs -= 4; x.font = `700 ${fs}px Caveat`; }
+  x.save(); x.translate(px + 10, CH - 92); x.rotate(-0.02); x.fillText(ellipsize(x, cap, pw - 460), 0, 0); x.restore();
+  spaced(x, s.short.toUpperCase(), CW - px, CH - 104, `600 30px ${MONO}`, "rgba(90,52,32,.8)", 4, "right");
+}
+
 function drawBack(x, s) {
   x.fillStyle = PAPER; x.fillRect(0, 0, CW, CH);
   let seed = 11; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
-  for (let i = 0; i < 2600; i++) { x.fillStyle = `rgba(120,98,60,${0.03 + rnd() * 0.06})`; x.fillRect(rnd() * CW, rnd() * CH, 1 + rnd() * 2.5, 1 + rnd() * 2.5); }
-  spaced(x, "POST CARD", CW / 2, 122, "800 44px Overpass", PRINT, 16, "center");
+  for (let i = 0; i < 2600; i++) { x.fillStyle = `rgba(122,84,50,${0.03 + rnd() * 0.06})`; x.fillRect(rnd() * CW, rnd() * CH, 1 + rnd() * 2.5, 1 + rnd() * 2.5); }
+  spaced(x, "POST CARD", CW / 2, 122, `400 46px ${SLAB}`, PRINT, 18, "center");
   const div = Math.round(CW * 0.56);
-  x.strokeStyle = "#CFC6B5"; x.lineWidth = 3; x.beginPath(); x.moveTo(div, 190); x.lineTo(div, CH - 110); x.stroke();
-  x.save(); x.translate(div - 16, CH - 116); x.rotate(-Math.PI / 2); spaced(x, `POSTCARDS · ${s.trip.toUpperCase()}`, 0, 0, '600 20px "Overpass Mono"', "rgba(91,104,98,.7)", 2, "left"); x.restore();
+  x.strokeStyle = "#D8C6AB"; x.lineWidth = 3; x.beginPath(); x.moveTo(div, 190); x.lineTo(div, CH - 110); x.stroke();
+  x.save(); x.translate(div - 16, CH - 116); x.rotate(-Math.PI / 2); spaced(x, `POSTCARDS · ${s.trip.toUpperCase()}`, 0, 0, `600 20px ${MONO}`, "rgba(106,82,66,.7)", 2, "left"); x.restore();
 
   // Left: handwritten message, then the day's stops
   const L = 100, R = div - 70, top = 220, bottom = CH - 110;
@@ -1088,37 +1317,43 @@ function drawBack(x, s) {
   lines.forEach((l, i) => x.fillText(l, L, top + fs * 0.82 + i * lh));
   if (stops.length) {
     let y = bottom - stopsH + 34;
-    spaced(x, "TODAY'S STOPS", L, y, "700 24px Overpass", PRINT, 4, "left"); y += 8;
+    spaced(x, "TODAY'S STOPS", L, y, `600 24px ${MONO}`, PRINT, 4, "left"); y += 8;
     x.font = "500 46px Caveat"; x.fillStyle = INK;
     stops.forEach((t) => { y += 56; x.fillText(ellipsize(x, t, R - L), L, y); });
-    if (s.stops.length > 5) { x.font = '600 22px "Overpass Mono"'; x.fillStyle = PRINT; x.fillText(`+${s.stops.length - 5} MORE`, L + 2, y + 40); }
+    if (s.stops.length > 5) { x.font = `600 22px ${MONO}`; x.fillStyle = PRINT; x.fillText(`+${s.stops.length - 5} MORE`, L + 2, y + 40); }
   }
 
-  // Stamp with perforated edge
+  // Stamp with perforated edge and a little desert scene
   const sw = 250, sh = 300, sx = CW - 90 - sw, sy = 84;
   x.save(); x.translate(sx + sw / 2, sy + sh / 2); x.rotate(0.035); x.translate(-sw / 2, -sh / 2);
   x.shadowColor = "rgba(0,0,0,.14)"; x.shadowBlur = 10; x.shadowOffsetY = 3;
-  x.fillStyle = "#FFFEF9"; x.fillRect(0, 0, sw, sh); x.shadowColor = "transparent"; x.shadowBlur = 0; x.shadowOffsetY = 0;
+  x.fillStyle = "#FFFDF7"; x.fillRect(0, 0, sw, sh); x.shadowColor = "transparent"; x.shadowBlur = 0; x.shadowOffsetY = 0;
   x.fillStyle = PAPER; const r = 9, step = 25, dot = (cx, cy) => { x.beginPath(); x.arc(cx, cy, r, 0, Math.PI * 2); x.fill(); };
   for (let px = step / 2; px < sw; px += step) { dot(px, 0); dot(px, sh); }
   for (let py = step / 2; py < sh; py += step) { dot(0, py); dot(sw, py); }
-  const ins = 24; x.fillStyle = "#1D6B48"; x.fillRect(ins, ins, sw - 2 * ins, sh - 2 * ins);
-  x.strokeStyle = "rgba(255,248,230,.85)"; x.lineWidth = 3; x.strokeRect(ins + 10, ins + 10, sw - 2 * ins - 20, sh - 2 * ins - 20);
-  x.fillStyle = "#FFF6DF"; x.textAlign = "center";
-  x.font = "700 30px Overpass"; x.fillText(s.stampTop, sw / 2, ins + 66);
-  x.font = `800 ${s.stampNum.length > 2 ? 96 : 124}px Overpass`; x.fillText(s.stampNum, sw / 2, ins + 182);
-  x.font = '600 21px "Overpass Mono"'; x.fillText(ellipsize(x, s.trip.toUpperCase(), sw - 2 * ins - 34), sw / 2, sh - ins - 28);
+  const ins = 24, iw = sw - 2 * ins, ih = sh - 2 * ins;
+  x.save(); x.beginPath(); x.rect(ins, ins, iw, ih); x.clip();
+  x.fillStyle = OCHRE; x.fillRect(ins, ins, iw, ih);
+  x.fillStyle = "#F1D3A8"; x.beginPath(); x.arc(ins + iw * 0.7, ins + ih * 0.62, 34, 0, Math.PI * 2); x.fill();
+  x.fillStyle = ACCENT; x.beginPath(); x.moveTo(ins, ins + ih * 0.8); x.lineTo(ins + iw * 0.3, ins + ih * 0.66); x.lineTo(ins + iw * 0.5, ins + ih * 0.74); x.lineTo(ins + iw * 0.75, ins + ih * 0.62); x.lineTo(ins + iw, ins + ih * 0.72); x.lineTo(ins + iw, ins + ih); x.lineTo(ins, ins + ih); x.fill();
+  x.fillStyle = "#5A2A17"; x.fillRect(ins, ins + ih * 0.88, iw, ih * 0.12);
+  x.restore();
+  x.strokeStyle = "rgba(255,246,226,.85)"; x.lineWidth = 3; x.strokeRect(ins + 10, ins + 10, iw - 20, ih - 20);
+  x.fillStyle = ESPRESSO; x.textAlign = "center";
+  x.font = `400 30px ${SLAB}`; x.fillText(s.stampTop, sw / 2, ins + 62);
+  x.font = `400 ${s.stampNum.length > 2 ? 86 : 110}px ${SLAB}`; x.fillText(s.stampNum, sw / 2, ins + 168);
+  x.fillStyle = "#FFF3DC"; x.font = `600 20px ${MONO}`; x.fillText(ellipsize(x, s.trip.toUpperCase(), iw - 34), sw / 2, sh - ins - 24);
   x.restore();
 
   // Postmark over the stamp's corner, with wavy cancellation lines
-  const pr = 108, pcx = sx - pr + 36, pcy = sy + sh - 60;
-  x.save(); x.globalAlpha = .76; x.strokeStyle = "#2B3954"; x.fillStyle = "#2B3954";
+  const pr = 108, pcx = sx - pr + 36, pcy = sy + sh - 60, pm = "#8C3B1C";
+  x.save(); x.globalAlpha = .78; x.strokeStyle = pm; x.fillStyle = pm;
   x.lineWidth = 6; x.beginPath(); x.arc(pcx, pcy, pr, 0, Math.PI * 2); x.stroke();
   x.lineWidth = 2.5; x.beginPath(); x.arc(pcx, pcy, pr - 16, 0, Math.PI * 2); x.stroke();
   x.textAlign = "center";
-  x.font = "700 21px Overpass"; x.fillText(ellipsize(x, (s.greet || s.trip).toUpperCase(), 158), pcx, pcy - 34);
-  x.font = "800 46px Overpass"; x.fillText(s.pmDate, pcx, pcy + 17);
-  x.font = '600 26px "Overpass Mono"'; x.fillText(s.pmYear, pcx, pcy + 54);
+  x.font = `700 21px ${HANKEN}`; x.fillText(ellipsize(x, (s.greet || s.trip).toUpperCase(), 158), pcx, pcy - 34);
+  x.font = `400 42px ${SLAB}`; x.fillText(s.pmDate, pcx, pcy + 17);
+  x.font = `600 26px ${MONO}`; x.fillText(s.pmYear, pcx, pcy + 54);
   x.lineWidth = 5;
   for (let k = 0; k < 5; k++) { const y = pcy - 60 + k * 30; x.beginPath(); let first = true;
     for (let xx = pcx - pr - 18; xx >= div + 60; xx -= 4) { const yy = y + Math.sin(xx / 22) * 9; first ? x.moveTo(xx, yy) : x.lineTo(xx, yy); first = false; } x.stroke(); }
@@ -1126,13 +1361,13 @@ function drawBack(x, s) {
 
   // Address lines with the To line in handwriting
   const ax0 = div + 70, ax1 = CW - 90, ys = [640, 770, 900, 1030];
-  x.strokeStyle = "#CFC6B5"; x.lineWidth = 3; ys.forEach((y) => { x.beginPath(); x.moveTo(ax0, y); x.lineTo(ax1, y); x.stroke(); });
+  x.strokeStyle = "#D8C6AB"; x.lineWidth = 3; ys.forEach((y) => { x.beginPath(); x.moveTo(ax0, y); x.lineTo(ax1, y); x.stroke(); });
   if (s.to) {
     x.font = "700 66px Caveat"; x.fillStyle = INK; x.textAlign = "left";
     const t = /^to\b/i.test(s.to) ? s.to : "To " + s.to;
     wrapText(x, t, ax1 - ax0 - 20).slice(0, 3).forEach((l, i) => x.fillText(l, ax0 + 12, ys[i] - 20));
   }
-  spaced(x, s.footer, ax1, CH - 58, '600 20px "Overpass Mono"', "rgba(91,104,98,.85)", 2, "right");
+  spaced(x, s.footer, ax1, CH - 58, `600 20px ${MONO}`, "rgba(106,82,66,.85)", 2, "right");
 }
 async function cardCanvas(spec, side, scale) {
   await fontsReady();
@@ -1171,7 +1406,8 @@ async function shareCard(card) {
 let C = null, compTok = 0, compTimer;
 function openComposer({ date, card }, swap) {
   const d = day(date || card.date), photos = dayPhotos(date || card.date);
-  C = card ? Object.assign({}, card) : { date, photoId: photos[0] || null, greet: greetFor(date) || S.trip.name || "", msg: d.note || "", to: S.lastTo || "", showStops: true };
+  C = card ? Object.assign({ style: "letter" }, card) : { date, photoId: photos[0] || null, greet: greetFor(date) || S.trip.name || "", msg: d.note || "", to: S.lastTo || "", showStops: true, style: S.lastStyle || "letter" };
+  $("c-style").querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", b.dataset.style === C.style));
   $("c-title").textContent = card ? "Edit postcard" : "New postcard";
   $("c-date").textContent = fmtDay(C.date);
   $("c-greet").value = C.greet; $("c-msg").value = C.msg; $("c-to").value = C.to;
@@ -1203,6 +1439,12 @@ function setSide(side) {
   $("c-pc").classList.toggle("flipped", side === "back");
   $("c-side").querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", b.dataset.side === side));
 }
+$("c-style").addEventListener("click", (e) => {
+  const b = e.target.closest("button"); if (!b || !C) return;
+  C.style = b.dataset.style;
+  $("c-style").querySelectorAll("button").forEach((x) => x.setAttribute("aria-pressed", x === b));
+  setSide("front"); queuePreview();
+});
 $("c-side").addEventListener("click", (e) => { const b = e.target.closest("button"); if (b) setSide(b.dataset.side); });
 $("c-pc").addEventListener("click", () => setSide($("c-pc").classList.contains("flipped") ? "front" : "back"));
 [["c-greet", "greet"], ["c-msg", "msg"], ["c-to", "to"]].forEach(([id, k]) => $(id).addEventListener("input", (e) => { C[k] = e.target.value; queuePreview(); }));
@@ -1220,10 +1462,11 @@ async function drawPreview() {
 $("c-save").addEventListener("click", async () => {
   const btn = $("c-save"); btn.disabled = true;
   try {
-    const now = Date.now(), rec = { id: C.id || uid(), created: C.created || now, updated: now, date: C.date, photoId: C.photoId || null, greet: C.greet.trim(), msg: C.msg.trim(), to: C.to.trim(), showStops: C.showStops };
+    const now = Date.now(), rec = { id: C.id || uid(), created: C.created || now, updated: now, date: C.date, photoId: C.photoId || null, greet: C.greet.trim(), msg: C.msg.trim(), to: C.to.trim(), showStops: C.showStops, style: C.style || "letter" };
     await idb.put("c:" + rec.id, await cardBlob(specFrom(rec), "front", 1 / 3, .82));
     const i = S.cards.findIndex((c) => c.id === rec.id); i >= 0 ? (S.cards[i] = rec) : S.cards.push(rec);
     if (rec.to) S.lastTo = rec.to;
+    S.lastStyle = rec.style;
     save(); render(); openViewer(rec.id, true);
     toast(i >= 0 ? "Postcard updated" : "Postcard saved to your Mailbox");
   } catch { toast("Couldn't save the postcard"); }
@@ -1257,14 +1500,15 @@ function openViewer(id, swap) {
 
 // ================= Toast =================
 let toastTimer;
-function toast(msg, action, fn) {
+function toast(msg, action, fn, action2, fn2) {
   clearTimeout(toastTimer);
   document.querySelectorAll(".toast").forEach((t) => t.remove());
   const el = document.createElement("div"); el.className = "toast" + (stack.length ? " top" : ""); el.setAttribute("role", "status");
-  el.innerHTML = `<span>${esc(msg)}</span>${action ? `<button>${esc(action)}</button>` : ""}`;
+  const acts = [[action, fn], [action2, fn2]].filter(([a]) => a);
+  el.innerHTML = `<span>${esc(msg)}</span>` + acts.map(([a]) => `<button>${esc(a)}</button>`).join("");
   $("app").appendChild(el);
-  if (action) el.querySelector("button").addEventListener("click", () => { fn(); el.remove(); });
-  toastTimer = setTimeout(() => el.remove(), action ? 5500 : 2600);
+  el.querySelectorAll("button").forEach((b, i) => b.addEventListener("click", () => { el.remove(); acts[i][1](); }));
+  toastTimer = setTimeout(() => el.remove(), acts.length > 1 ? 8000 : acts.length ? 5500 : 2600);
 }
 
 // ================= Welcome & boot =================
@@ -1281,10 +1525,16 @@ $("w-go").addEventListener("click", () => {
   if (q.toString()) history.replaceState(null, "", location.pathname);
   if (!S.onboarded) { show("welcome"); return; }
   show("day");
-  if (go === "mailbox" || go === "timeline" || go === "places") goTab(go);
-  if (shared || go === "add") openPlaceSheet({ date: iso(new Date()), shared });
+  if (go === "mailbox" || go === "timeline" || go === "places" || go === "journey" || go === "trip") goTab(go);
+  if (shared && shared.name && S.quickSave) quickSave(shared);
+  else if (shared || go === "add") openPlaceSheet({ date: iso(new Date()), shared });
   if (go === "postcard") openComposer({ date: iso(new Date()) });
   fontsReady(); setTimeout(gc, 10000);
+  // One-off: redraw Mailbox thumbnails made by the green pilot in the new style
+  if (S.thumbs !== 2) (async () => {
+    for (const c of S.cards.slice()) { try { await idb.put("c:" + c.id, await cardBlob(specFrom(c), "front", 1 / 3, .82)); } catch {} }
+    S.thumbs = 2; save(); if (tab === "mailbox" || tab === "day") { urls.forEach((u, k) => k.startsWith("c:") && dropUrl(k)); document.querySelectorAll('img[data-k^="c:"]').forEach((im) => delete im.dataset.loaded); render(); }
+  })();
 })();
 if ("serviceWorker" in navigator && location.protocol === "https:") navigator.serviceWorker.register("sw.js").catch(() => {});
 </script>
